@@ -2,7 +2,7 @@ html, body{
   height: 100%;
 }
 body { 
-  background-image: url(1.png);
+  background-image: url(http://ppcdn.500px.org/75319705/1991f76c0c6a91ae1d23eb94ac5c7a9f7e79c480/2048.jpg) ;
   background-position: center center;
   background-repeat:  no-repeat;
   background-attachment: fixed;
@@ -15,4 +15,14 @@ div, body{
   margin: 0;
   padding: 0;
   font-family: exo, sans-serif;
+}
+
+.main-container {
+  margin-top: 5%;
+  text-align: center;
+  color: white;
+}
+
+.first-question {
+  margin-top: 12%;
 }
