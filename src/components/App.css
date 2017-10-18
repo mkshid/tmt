@@ -26,3 +26,32 @@ div, body{
 .first-question {
   margin-top: 12%;
 }
+.time-selector {
+  margin-top: 8%;
+}
+
+.timers-container {
+  padding: 0;
+  margin: 4% 0 0 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.sqr {
+  width: 100px;
+  height: 100px;
+  border: 1px solid whitesmoke;
+  background: #f5f5f54d;
+}
+
+.sqr > p {
+  padding-top: 35%
+}
