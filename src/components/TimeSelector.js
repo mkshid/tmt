@@ -1,26 +1,24 @@
-import React, { Component } from  'react';
+import React from  'react';
+import {map as l_map} from 'lodash';
 
 
-class TimeSelector extends Component {
+const TimeSelector = ({handleClick, times}) => {
 
-  render(){
-    const time_list = [
-      '5-10', '10-20', '20-30',
-      '30-40', '40-50', '50-60'
-    ];
-    const time_selectors = time_list.map(
-      (t) => <div className='sqr'> <p>{t}</p> </div>
-    );
-    return (
+  const time_selectors = l_map(
+    times, (v, k) => (
+      <div className='sqr' key={k} onClick={(e) => handleClick(k)}>
+        <p>{v.text}</p>
+      </div>
+    ));
+
+  return (
       <div className='time-selector'>
         <p> Give a time per day... </p>
         <div className='timers-container'>
           {time_selectors}
         </div>
       </div>
-    );
-    
-  }
-}
+  );
+};
 
 export default TimeSelector;
