@@ -1,9 +1,10 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
 import './App.css';
 import NavBar from './Navbar';
 import TimeSelector from './TimeSelector';
-
+import { API_KEY as api_key, BASE_DISCOVER_URL } from '../settings';
 
 class App extends Component {
 
@@ -18,13 +19,24 @@ class App extends Component {
         3: {text: '30-40', gte: 40, lte: 50},
         4: {text: '50-60', gte: 50, lte: 60}
       },
-      selected: -1
+      selected: -1,
+      data: {}
     };
   }
 
   handleClick(key){
     this.setState({selected: key});
-    console.log(this.state.times[this.state.selected]);
+    const time_selected = this.state.times[key];
+    axios.get(BASE_DISCOVER_URL, {
+      params: {
+        api_key,
+        'with_runtime.gte': time_selected.gte,
+        'with_runtime.lte': time_selected.lte,
+        page: 1
+      }
+    }).then(({data}) => {
+      this.setState({data});
+    });
   }
 
   render() {
