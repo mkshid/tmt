@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { Grid } from 'react-bootstrap';
 import './App.css';
 import NavBar from './Navbar';
-import TimeSelector from './TimeSelector';
+import Selector from './Selector';
 import { API_KEY as api_key, BASE_DISCOVER_URL } from '../settings';
 
 class App extends Component {
@@ -43,15 +42,10 @@ class App extends Component {
     return (
       <div>
         <NavBar />
-        <Grid className='main-container'>
-          <h1 > Hey, looking for a new <u>serie</u>? </h1>
-          <h3 className='first-question'>
-            How many <b> minutes  </b> do you have? </h3>
-          <TimeSelector
-             handleClick={this.handleClick.bind(this)}
-             times={this.state.times}
-             />
-        </Grid>
+        <Selector
+           times={this.state.times}
+           handleClick={this.handleClick.bind(this)}
+           />
       </div>
     );
   }
