@@ -16,23 +16,18 @@ html, body{
 }
 
 .timers-container {
-  padding: 0;
-  margin: 4% 0 0 0;
-  list-style: none;
-
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
-
-  -webkit-flex-flow: row wrap;
   justify-content: space-evenly;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  width: 32%;
+  margin-left: 34%;
 }
 
 .sqr {
   width: 100px;
   height: 100px;
+  margin: 10px;
   border: 1px solid whitesmoke;
   background: #f5f5f54d;
   border-radius: 4px;
@@ -40,5 +35,19 @@ html, body{
 }
 
 .sqr > p {
-  padding-top: 35%
+  padding-top: 42%
+}
+
+.film-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+  align-items: flex-end;
+}
+
+.film {
+  height: 250px;
+  width: 190px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
 }

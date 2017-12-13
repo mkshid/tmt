@@ -18,7 +18,8 @@ class App extends Component {
         1: {text: '10-20', gte: 10, lte: 20},
         2: {text: '20-30', gte: 20, lte: 30},
         3: {text: '30-40', gte: 40, lte: 50},
-        4: {text: 'More', gte: 50}
+        4: {text: '40-50', gte: 40, lte: 50},
+        5: {text: 'More', gte: 50}
       },
       selected: -1,
       data: {}
@@ -49,7 +50,7 @@ class App extends Component {
     );
 
     if (!l_isEmpty(this.state.data)){
-      component_to_view = <Results />;
+      component_to_view = <Results data={this.state.data}/>;
     }
 
     return (
