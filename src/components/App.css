@@ -37,17 +37,3 @@ html, body{
 .sqr > p {
   padding-top: 42%
 }
-
-.film-container {
-  display: flex;
-  justify-content: space-evenly;
-  flex-flow: row wrap;
-  align-items: flex-end;
-}
-
-.film {
-  height: 250px;
-  width: 190px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
-}
