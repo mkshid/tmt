@@ -6,7 +6,7 @@ const Selector = ({handleClick, times}) => {
 
   return(
     <Grid className='main-container'>
-      <h1 > Hey, looking for a new <u>serie</u>? </h1>
+      <h1 > Hey, looking for a new <u>series</u>? </h1>
       <h3 className='first-question'>
         How many <b> minutes  </b> do you have? </h3>
       <TimeSelector
