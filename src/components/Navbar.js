@@ -7,7 +7,7 @@ import {
 const NavBar = (props) => {
   
   return (
-    <Navbar inverse collapseOnSelect>
+    <Navbar collapseOnSelect className='bg-transparent'>
       <Navbar.Header>
         <Navbar.Brand>
           <a href="#">TmT (Take my Time)</a>

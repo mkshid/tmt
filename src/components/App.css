@@ -11,3 +11,17 @@ html, body{
 .first-question {
   margin-top: 4%;
 }
+
+.bg-transparent{
+  background-color: #f8f8f800;
+  border-color: #f8f8f800;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: lightgray;
+}
