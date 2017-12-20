@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import './App.css';
 import NavBar from './Navbar';
+import Background from '../images/bg.jpg';
 import Selector from './Selector';
 import Results from './Results';
 import {isEmpty as l_isEmpty} from 'lodash';
@@ -42,6 +43,12 @@ class App extends Component {
   }
 
   render() {
+    const BackgroundStyle = {
+      width: "100%",
+      height: "100%",
+      backgroundImage: "url(" + Background + ")"
+    };
+
     let component_to_view = (
       <Selector
          times={this.state.times}
@@ -54,7 +61,7 @@ class App extends Component {
     }
 
     return (
-      <div>
+      <div style={ BackgroundStyle }>
         <NavBar />
         {component_to_view}
       </div>
