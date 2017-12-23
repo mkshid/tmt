@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Nav, Navbar, NavItem
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 const NavBar = (props) => {
@@ -10,7 +11,7 @@ const NavBar = (props) => {
     <Navbar collapseOnSelect className='bg-transparent'>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#">TmT (Take my Time)</a>
+          <Link to='/'>TmT (Take my Time)</Link>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
