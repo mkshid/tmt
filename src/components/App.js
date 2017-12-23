@@ -1,9 +1,7 @@
-import axios from 'axios';
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Route,
-  Redirect
+  Route
 } from 'react-router-dom';
 
 import './App.css';
