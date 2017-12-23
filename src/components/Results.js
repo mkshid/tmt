@@ -11,7 +11,9 @@ const Results = ({data}) => {
         <div className='vote'>{film.vote_average}/10</div>
         <div className='title'>{film.title}</div>
       </div>
-      <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}/>
+      <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+           alt={film.title}
+           />
     </div>
   ));
 
