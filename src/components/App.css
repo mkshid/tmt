@@ -25,3 +25,7 @@ html, body{
 .navbar-default .navbar-nav>li>a:hover {
   color: lightgray;
 }
+
+.pointer {
+  cursor: pointer;
+}

@@ -113,15 +113,23 @@ class Results extends Component {
     return(
       <Grid className='main-container'>
         <h1> So here are your results... </h1>
-        <div className='film-container'>
-          {results}
+        <div className='results-container'>
+          <div className='film-container'>
+            {results}
+          </div>
+          <span
+             className='prev-movies pointer'
+             onClick={()=>this.prev_movies()}
+            hidden={start === 0 && page === 1 ? true : false }>
+            <i>⬅</i>
+          </span>
+          <span
+             className='next-movies pointer'
+             onClick={()=>this.next_movies()}>
+            <i>➡</i>
+          </span>
         </div>
         <div>
-          <button
-             onClick={()=>this.prev_movies()}
-            hidden={start === 0 && page === 1 ? true : false }
-            > Previous </button>
-          <button onClick={()=>this.next_movies()}> Next </button>
         </div>
       </Grid>
     );

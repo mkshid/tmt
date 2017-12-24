@@ -1,7 +1,35 @@
+.results-container {
+  display: grid;
+  grid-template-columns: 40px auto 40px;
+}
+
 .film-container {
   display: grid;
   justify-items: center;
   margin-top: 10%;
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
+
+.prev-movies {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  font-size: 45px;
+  height: 60px;
+}
+
+.next-movies {
+  grid-row-start: 1;
+  grid-column-start: 3;
+  grid-column-end: 3;
+  font-size: 45px;
+  height: 60px;
+}
+
+.prev-movies:hover,
+.next-movies:hover {
+  color: grey;
 }
 
 .loader {
