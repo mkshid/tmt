@@ -14,9 +14,8 @@ class Results extends Component {
     super(props);
 
     this.state = {
-      data: {},
+      data: { results: [] },
       start: 0, end: 8,
-      last_start: 0, last_end: 8,
       page: 1
     };
   }
@@ -27,6 +26,7 @@ class Results extends Component {
 
   getData(){
     const { match: { params }, history } = this.props;
+    const { data: { results } } = this.state;
     const time = params.time.split('-');
     let gte = parseInt(time[0], 10);
     let lte = parseInt(time[1], 10);
@@ -42,50 +42,35 @@ class Results extends Component {
         page: this.state.page
       }
     }).then(({data}) => {
-      this.setState({data});
+      this.setState({data: {
+        results: results.concat(data.results)
+      }});
     });
   }
 
 
   next_movies(){
-    const {data, start, end, page } = this.state;
+    const {data, end, page } = this.state;
     const new_start = end;
     const new_end = end + 8;
 
-    if (new_start > data.results.length) {
+    if (new_end > data.results.length) {
       this.setState(
-        {page: page + 1, start: 0 , end: 8,
-         last_start: start, last_end: end},
+        {page: page + 1, start: new_start , end: new_end},
         this.getData
       );
     } else {
-      this.setState({
-        start: new_start, end: new_end,
-        last_start: start, last_end: end
-      });
+      this.setState({ start: new_start, end: new_end });
     }
   }
 
   prev_movies(){
-    const {start, last_start, end, page } = this.state;
-    if (start === 0 && page !== 1){
-      // This is needed necessary to go back to the previous set
-      // in the right place.
-      this.setState(
-        {page: page - 1, start: 16, end: 24,
-         last_start: last_start - 8, lats_end: last_start},
-        this.getData
-      );
-    } else {
-      this.setState({
-        start: start - 8, end: start,
-        last_start: start, last_end: end
-      });
-    }
+    const { start } = this.state;
+    this.setState({ start: start - 8, end: start });
   }
 
   render(){
-    const { data, start, end, page } = this.state;
+    const { data, start, end } = this.state;
 
     if(l_isEmpty(data)){
       return(
@@ -120,7 +105,7 @@ class Results extends Component {
           <span
              className='prev-movies pointer'
              onClick={()=>this.prev_movies()}
-            hidden={start === 0 && page === 1 ? true : false }>
+            hidden={start === 0 ? true : false }>
             <i>⬅</i>
           </span>
           <span
