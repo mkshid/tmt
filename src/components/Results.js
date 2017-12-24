@@ -14,13 +14,19 @@ class Results extends Component {
     super(props);
 
     this.state = {
-      data: {}
+      data: {},
+      start: 0, end: 8,
+      last_start: 0, last_end: 8,
+      page: 1
     };
   }
 
   componentWillMount(){
+    this.getData();
+  }
+
+  getData(){
     const { match: { params }, history } = this.props;
-    
     const time = params.time.split('-');
     let gte = parseInt(time[0], 10);
     let lte = parseInt(time[1], 10);
@@ -33,29 +39,65 @@ class Results extends Component {
         api_key,
         'with_runtime.gte': gte,
         'with_runtime.lte': lte,
-        page: 1
+        page: this.state.page
       }
     }).then(({data}) => {
       this.setState({data});
     });
-        
+  }
+
+
+  next_movies(){
+    const {data, start, end, page } = this.state;
+    const new_start = end;
+    const new_end = end + 8;
+
+    if (new_start > data.results.length) {
+      this.setState(
+        {page: page + 1, start: 0 , end: 8,
+         last_start: start, last_end: end},
+        this.getData
+      );
+    } else {
+      this.setState({
+        start: new_start, end: new_end,
+        last_start: start, last_end: end
+      });
+    }
+  }
+
+  prev_movies(){
+    const {start, last_start, end, page } = this.state;
+    if (start === 0 && page !== 1){
+      // This is needed necessary to go back to the previous set
+      // in the right place.
+      this.setState(
+        {page: page - 1, start: 16, end: 24,
+         last_start: last_start - 8, lats_end: last_start},
+        this.getData
+      );
+    } else {
+      this.setState({
+        start: start - 8, end: start,
+        last_start: start, last_end: end
+      });
+    }
   }
 
   render(){
-    const { data } = this.state;
+    const { data, start, end, page } = this.state;
 
     if(l_isEmpty(data)){
       return(
         <div>
 	  <ReactLoading
-             className='loader'
-             type="spinningBubbles"
+             className='loader' type="spinningBubbles"
              color="white" />
         </div>
       );
     }
-    
-    const reduced_results = data.results.slice(0, 8);
+
+    const reduced_results = data.results.slice(start, end);
     const results = reduced_results.map((film) => (
       <div className='film' key={film.id}>
         <div className='info'>
@@ -73,6 +115,13 @@ class Results extends Component {
         <h1> So here are your results... </h1>
         <div className='film-container'>
           {results}
+        </div>
+        <div>
+          <button
+             onClick={()=>this.prev_movies()}
+            hidden={start === 0 && page === 1 ? true : false }
+            > Previous </button>
+          <button onClick={()=>this.next_movies()}> Next </button>
         </div>
       </Grid>
     );
