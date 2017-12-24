@@ -1,10 +1,11 @@
 import axios from 'axios';
-import './Results.css';
+import { Grid } from 'react-bootstrap';
+import ReactLoading from 'react-loading';
 import React, { Component } from 'react';
 import {isEmpty as l_isEmpty} from 'lodash';
-import { Grid } from 'react-bootstrap';
+
+import './Results.css';
 import { API_KEY as api_key, BASE_DISCOVER_URL } from '../settings';
-import ReactLoading from 'react-loading';
 
 
 class Results extends Component {
