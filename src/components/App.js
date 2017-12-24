@@ -23,7 +23,7 @@ class App extends Component {
 
     return (
       <Router>
-        <div style={ BackgroundStyle }>
+        <div style={ BackgroundStyle } className='main-div'>
           <NavBar />
           <Route exact path='/' component={Selector}/>
           <Route exact path='/results/:time' component={Results}/>

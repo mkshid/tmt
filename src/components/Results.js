@@ -3,6 +3,7 @@ import { Grid } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 import React, { Component } from 'react';
 import {isEmpty as l_isEmpty} from 'lodash';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Results.css';
 import { API_KEY as api_key, BASE_DISCOVER_URL } from '../settings';
@@ -99,9 +100,13 @@ class Results extends Component {
       <Grid className='main-container'>
         <h1> So here are your results... </h1>
         <div className='results-container'>
-          <div className='film-container'>
+          <ReactCSSTransitionGroup
+             transitionName='film-container'
+             transitionEnterTimeout={500}
+             transitionLeaveTimeout={300}
+             className='film-container'>
             {results}
-          </div>
+          </ReactCSSTransitionGroup>
           <span
              className='prev-movies pointer'
              onClick={()=>this.prev_movies()}

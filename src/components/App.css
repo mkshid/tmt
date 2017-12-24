@@ -29,3 +29,9 @@ html, body{
 .pointer {
   cursor: pointer;
 }
+
+@media screen and (min-width : 992px) {
+  .main-div {
+    overflow: hidden;
+  }
+}
