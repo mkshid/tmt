@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 import {isEmpty as l_isEmpty} from 'lodash';
 import { Grid } from 'react-bootstrap';
 import { API_KEY as api_key, BASE_DISCOVER_URL } from '../settings';
+import ReactLoading from 'react-loading';
+
 
 class Results extends Component {
 
@@ -40,8 +42,16 @@ class Results extends Component {
 
   render(){
     const { data } = this.state;
+
     if(l_isEmpty(data)){
-      return(<div> Loading data</div>);
+      return(
+        <div>
+	  <ReactLoading
+             className='loader'
+             type="spinningBubbles"
+             color="white" />
+        </div>
+      );
     }
     
     const reduced_results = data.results.slice(0, 8);
