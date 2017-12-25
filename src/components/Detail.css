@@ -1,0 +1,25 @@
+.detail-grid {
+  display: grid;
+  grid-template-columns: 40% auto;
+  grid-gap: 80px;
+}
+
+.detail-grid img {
+  grid-row-start: 1;
+  grid-row-end: 1;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  width: 100%;
+}
+
+.detail-grid .info {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.detail-grid .overview {
+  font-size: 17px;
+  margin-top: 15%;
+}
