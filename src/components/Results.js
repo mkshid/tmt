@@ -4,7 +4,6 @@ import ReactLoading from 'react-loading';
 import React, { Component } from 'react';
 import {isEmpty as l_isEmpty} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { Link } from 'react-router-dom';
 
 import './Results.css';
 import { API_KEY as api_key, BASE_URL } from '../settings';
