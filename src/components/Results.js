@@ -36,7 +36,7 @@ class Results extends Component {
     gte = !isNaN(gte) ? gte : history.push('/');
     lte = !isNaN(lte) ? lte : '';
 
-    axios.get(BASE_DISCOVER_URL, {
+    axios.get(`${BASE_DISCOVER_URL}/discover/movie` , {
       params: {
         api_key,
         'with_runtime.gte': gte,
