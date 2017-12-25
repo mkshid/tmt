@@ -2,12 +2,12 @@ import './TimeSelector.css';
 import React from  'react';
 import {map as l_map} from 'lodash';
 
-const TimeSelector = ({times, history}) => {
+const TimeSelector = ({times, handleClick}) => {
 
   const time_selectors = l_map(
     times, (v, k) => (
       <div className='time' key={k} onClick={(e) => {
-          history.push(`/results/${v.code}`);
+          handleClick(v.code);
         }}>
         <p>{v.text}</p>
       </div>

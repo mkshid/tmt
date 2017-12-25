@@ -27,8 +27,8 @@ class App extends Component {
         <div style={ BackgroundStyle } className='main-div'>
           <NavBar />
           <Route exact path='/' component={Selector}/>
-          <Route exact path='/results/:time' component={Results}/>
-          <Route exact path='/movie/:movie_id' component={Detail}/>
+          <Route exact path='/results/:type/:time' component={Results}/>
+          <Route exact path='/:type/:movie_id' component={Detail}/>
         </div>
       </Router>
     );

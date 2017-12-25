@@ -29,13 +29,14 @@ class Results extends Component {
     const { match: { params }, history } = this.props;
     const { data: { results } } = this.state;
     const time = params.time.split('-');
+    const type = params.type === 'series'? 'tv' : params.type;
     let gte = parseInt(time[0], 10);
     let lte = parseInt(time[1], 10);
 
     gte = !isNaN(gte) ? gte : history.push('/');
     lte = !isNaN(lte) ? lte : '';
 
-    axios.get(`${BASE_URL}/discover/movie` , {
+    axios.get(`${BASE_URL}/discover/${type}` , {
       params: {
         api_key,
         'with_runtime.gte': gte,
@@ -72,7 +73,9 @@ class Results extends Component {
 
   render(){
     const { data, start, end } = this.state;
-    const { history } = this.props;
+    const {match: { params }, history } = this.props;
+    const type = params.type === 'series'? 'tv' : params.type;
+
 
     if(l_isEmpty(data)){
       return(
@@ -85,20 +88,22 @@ class Results extends Component {
     }
 
     const reduced_results = data.results.slice(start, end);
-    const results = reduced_results.map((film) => (
+    const results = reduced_results.map((film) => {
+      const title = film.hasOwnProperty('title') ? film.title : film.name;
+      return(
       <div className='film' key={film.id}>
         <div className='info'>
           <div className='vote'>{film.vote_average}/10</div>
-          <div className='title'>{film.title}</div>
+          <div className='title'>{title}</div>
           <div className='more'
-               onClick={() => history.push(`/movie/${film.id}`)}
+               onClick={() => history.push(`/${type}/${film.id}`)}
             > More... </div>
         </div>
         <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
              alt={film.title}
              />
       </div>
-    ));
+      );});
 
     return(
       <Grid className='main-container'>
