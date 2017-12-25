@@ -6,7 +6,7 @@ import {isEmpty as l_isEmpty} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Results.css';
-import { API_KEY as api_key, BASE_DISCOVER_URL } from '../settings';
+import { API_KEY as api_key, BASE_URL } from '../settings';
 
 
 class Results extends Component {
@@ -35,7 +35,7 @@ class Results extends Component {
     gte = !isNaN(gte) ? gte : history.push('/');
     lte = !isNaN(lte) ? lte : '';
 
-    axios.get(BASE_DISCOVER_URL, {
+    axios.get(`${BASE_URL}/discover/movie` , {
       params: {
         api_key,
         'with_runtime.gte': gte,
@@ -72,6 +72,7 @@ class Results extends Component {
 
   render(){
     const { data, start, end } = this.state;
+    const { history } = this.props;
 
     if(l_isEmpty(data)){
       return(
@@ -89,6 +90,9 @@ class Results extends Component {
         <div className='info'>
           <div className='vote'>{film.vote_average}/10</div>
           <div className='title'>{film.title}</div>
+          <div className='more'
+               onClick={() => history.push(`/movie/${film.id}`)}
+            > More... </div>
         </div>
         <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
              alt={film.title}
