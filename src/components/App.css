@@ -3,7 +3,7 @@ html, body{
 }
 
 .main-container {
-  margin-top: 10%;
+  margin-top: 7%;
   text-align: center;
   color: white;
 }
@@ -24,4 +24,14 @@ html, body{
 
 .navbar-default .navbar-nav>li>a:hover {
   color: lightgray;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+@media screen and (min-width : 992px) {
+  .main-div {
+    overflow: hidden;
+  }
 }
