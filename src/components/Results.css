@@ -64,21 +64,30 @@
 
 .film .info:hover {
   background: rgba(0, 0, 0, 0.7);
-  cursor: pointer;
   transition: all .2s ease-in;
   color: white;
  }
 
 .film .vote {
   text-align: right;
-  width: 100%;
 }
 
 .film .title {
   margin-top: 45%;
   text-align: left;
+}
+
+.film .more {
+  text-align: right;
+  margin-top: 20%;
   width: 100%;
 }
+
+.film .more:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 
 /* Media queries */
 
