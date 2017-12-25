@@ -31,6 +31,7 @@ export default class Detail extends Component {
   }
 
   render(){
+    const { history } = this.props;
     const { film } = this.state;
 
     if(_.isEmpty(film)){
@@ -52,6 +53,11 @@ export default class Detail extends Component {
     return(
       <Grid className='main-container'>
         <div className='detail-grid'>
+          <span
+             className='prev-movies pointer align-left'
+             onClick={() => history.goBack()}>
+             <i>⬅</i>
+          </span>
           <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
                alt={film.title} />
           <section className='info'>
