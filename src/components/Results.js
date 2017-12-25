@@ -7,7 +7,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'react-router-dom';
 
 import './Results.css';
-import { API_KEY as api_key, BASE_DISCOVER_URL } from '../settings';
+import { API_KEY as api_key, BASE_URL } from '../settings';
 
 
 class Results extends Component {
@@ -36,7 +36,7 @@ class Results extends Component {
     gte = !isNaN(gte) ? gte : history.push('/');
     lte = !isNaN(lte) ? lte : '';
 
-    axios.get(`${BASE_DISCOVER_URL}/discover/movie` , {
+    axios.get(`${BASE_URL}/discover/movie` , {
       params: {
         api_key,
         'with_runtime.gte': gte,
