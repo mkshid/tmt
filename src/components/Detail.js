@@ -21,9 +21,8 @@ export default class Detail extends Component {
   }
 
   getData(){
-    const { match: { params: { movie_id } } } = this.props;
-
-    axios.get(`${BASE_URL}/movie/${movie_id}`, {
+    const { match: { params: { movie_id, type } } } = this.props;
+    axios.get(`${BASE_URL}/${type}/${movie_id}`, {
       params: {
         api_key
       }
@@ -46,7 +45,7 @@ export default class Detail extends Component {
 
     let genres = [];
     let productors = [];
-
+    const title = film.hasOwnProperty('title') ? film.title : film.name;
     film.genres.forEach((g) => genres.push(g.name));
     film.production_companies.forEach((pc) => productors.push(pc.name));
 
@@ -59,10 +58,10 @@ export default class Detail extends Component {
              <i>⬅</i>
           </span>
           <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
-               alt={film.title} />
+               alt={title} />
           <section className='info'>
             <article> 
-              <h1>{film.title} </h1>
+              <h1>{title} </h1>
               <h3>{film.tagline}</h3>
               <h3>{genres.join(', ')} </h3>
               <h3>{productors.join(', ')}</h3>

@@ -1,0 +1,16 @@
+.type-select,
+.type-select:active,
+.type-select:focus{
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid lightcoral;
+  outline: none;
+  cursor: pointer;
+  color: lightcoral;
+  -webkit-appearance: none;
+  margin: 0 10px;
+}
+
+.type-select options {
+  background: transparent;
+}
