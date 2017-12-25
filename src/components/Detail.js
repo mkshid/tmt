@@ -1,8 +1,8 @@
-import _ from 'lodash';
 import axios from 'axios';
 import { Grid } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 import React, { Component } from 'react';
+import {isEmpty as l_isEmpty} from 'lodash';
 
 import './Detail.css';
 import { API_KEY as api_key, BASE_URL } from '../settings';
@@ -34,7 +34,7 @@ export default class Detail extends Component {
     const { history } = this.props;
     const { film } = this.state;
 
-    if(_.isEmpty(film)){
+    if(l_isEmpty(film)){
       return(
         <div>
 	  <ReactLoading
