@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom';
 
 import './App.css';
-import Background from '../images/bg.jpg';
 
 import NavBar from './Navbar';
 import Selector from './Selector';
@@ -17,17 +16,11 @@ import { PROJECT_NAME } from '../settings';
 class App extends Component {
 
   render() {
-    const BackgroundStyle = {
-      width: '100%',
-      height: '100%',
-      backgroundImage: 'url(' + Background + ')'
-    };
-
     const root_url = `${PROJECT_NAME}/`;
 
     return (
       <Router>
-        <div style={ BackgroundStyle } className='main-div'>
+        <div>
           <NavBar />
           <Route exact path={root_url} component={Selector}/>
           <Route exact path={`${root_url}results/:type/:time`}

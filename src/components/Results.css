@@ -48,6 +48,7 @@
 .film img {
   width: 100%;
   height: 90%;
+  border-radius: 4px;
 }
 
 .film .info {
@@ -60,6 +61,7 @@
   transition: all .2s ease-out;
   /* Hide the text until hover */
   color: transparent;
+  border-radius: 4px;
 }
 
 .film .info:hover {
@@ -133,11 +135,11 @@
 }
 
 .film-container-leave {
-  visibility: hidden;
+  display: none;
   opacity: 1;
 }
 
 .film-container-leave.film-container-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-out;
+  display: none;
+  opacity: 1;
 }
