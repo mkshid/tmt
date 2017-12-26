@@ -3,6 +3,7 @@ import { Grid } from 'react-bootstrap';
 import TimeSelector from './TimeSelector';
 
 import './Selector.css';
+import { PROJECT_NAME } from '../settings';
 
 class Selector extends Component {
 
@@ -29,7 +30,8 @@ class Selector extends Component {
   }
 
   handleTimeSelection(code){
-    this.props.history.push(`/results/${this.state.value}/${code}`);
+    this.props.history.push(
+      `${PROJECT_NAME}/results/${this.state.value}/${code}`);
   }
 
   render(){

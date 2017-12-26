@@ -6,7 +6,7 @@ import {isEmpty as l_isEmpty} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Results.css';
-import { API_KEY as api_key, BASE_URL } from '../settings';
+import { PROJECT_NAME, API_KEY as api_key, BASE_URL } from '../settings';
 
 
 class Results extends Component {
@@ -33,7 +33,7 @@ class Results extends Component {
     let gte = parseInt(time[0], 10);
     let lte = parseInt(time[1], 10);
 
-    gte = !isNaN(gte) ? gte : history.push('/');
+    gte = !isNaN(gte) ? gte : history.push(`${PROJECT_NAME}/`);
     lte = !isNaN(lte) ? lte : '';
 
     axios.get(`${BASE_URL}/discover/${type}` , {
@@ -96,7 +96,7 @@ class Results extends Component {
           <div className='vote'>{film.vote_average}/10</div>
           <div className='title'>{title}</div>
           <div className='more'
-               onClick={() => history.push(`/${type}/${film.id}`)}
+               onClick={() => history.push(`${PROJECT_NAME}/${type}/${film.id}`)}
             > More... </div>
         </div>
         <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
