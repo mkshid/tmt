@@ -34,15 +34,27 @@ class Selector extends Component {
   }
 
   render(){
-    const times = {
-      0: {text: '5-10', gte: 5, lte: 10, code: '5-10'},
-      1: {text: '10-20', gte: 10, lte: 20, code: '10-20'},
-      2: {text: '20-30', gte: 20, lte: 30, code: '20-30'},
-      3: {text: '30-40', gte: 40, lte: 50, code: '30-40'},
-      4: {text: '40-50', gte: 40, lte: 50, code: '40-50'},
-      5: {text: 'More', gte: 50, code: '50'}
+    const { value } = this.state;
+    const series_times =  {
+      0: {text: '5-10', code: '5-10'},
+      1: {text: '10-20', code: '10-20'},
+      2: {text: '20-30', code: '20-30'},
+      3: {text: '30-40', code: '30-40'},
+      4: {text: '40-50', code: '40-50'},
+      5: {text: 'More', code: '50'}
     };
 
+    const movie_times = {
+      0: {text: '5-30', code: '5-30'},
+      1: {text: '30-60', code: '30-60'},
+      2: {text: '60-90', code: '60-90'},
+      3: {text: '90-120', code: '90-120'},
+      4: {text: '120-150', code: '120-150'},
+      5: {text: 'More', code: '150'}
+    };
+
+    const times = value === '' || value === 'movie'
+            ? movie_times: series_times;
     return(
       <Grid className='main-container'>
         <h1> Hey, looking for a new
