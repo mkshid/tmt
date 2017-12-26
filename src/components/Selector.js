@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
 import TimeSelector from './TimeSelector';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Selector.css';
 
