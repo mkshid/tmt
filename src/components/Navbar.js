@@ -1,13 +1,9 @@
 import React from 'react';
-import {
-  Nav, Navbar, NavItem
-} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Navbar } from 'react-bootstrap';
+import { Link, NavLink } from 'react-router-dom';
 import { PROJECT_NAME } from '../settings';
 
-
 const NavBar = (props) => {
-  
   return (
     <Navbar collapseOnSelect className='bg-transparent'>
       <Navbar.Header>
@@ -17,9 +13,9 @@ const NavBar = (props) => {
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>
-        <Nav pullRight>
-          <NavItem eventKey={1} href="#">About</NavItem>
-        </Nav>
+        <Navbar.Text pullRight>
+          <NavLink to={`${PROJECT_NAME}/about`}>About</NavLink>
+        </Navbar.Text>
       </Navbar.Collapse>
     </Navbar>
   );

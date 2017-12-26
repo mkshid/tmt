@@ -10,6 +10,8 @@ import NavBar from './Navbar';
 import Selector from './Selector';
 import Results from './Results';
 import Detail from './Detail';
+import About from './About';
+
 import { PROJECT_NAME } from '../settings';
 
 
@@ -27,6 +29,8 @@ class App extends Component {
                  component={Results}/>
           <Route exact path={`${root_url}:type/:movie_id`}
                  component={Detail}/>
+          <Route exact path={`${root_url}about`}
+                 component={About} />
         </div>
       </Router>
     );

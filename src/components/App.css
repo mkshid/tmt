@@ -37,3 +37,7 @@ html, body {
 .align-left {
   text-align: left;
 }
+
+.navbar-text a {
+  color: white;
+}
