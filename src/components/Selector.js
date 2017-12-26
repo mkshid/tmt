@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from 'react-bootstrap';
 import TimeSelector from './TimeSelector';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Selector.css';
 
@@ -9,12 +10,23 @@ class Selector extends Component {
   constructor(props){
     super(props);
 
-    this.state = { value: 'movie'};
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      value: '',
+      componentClasses: ['time-component']
+    };
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleChange(value) {
+
+    if (value !== ''){
+      let { componentClasses } = this.state;
+      if (componentClasses.length === 1){
+        componentClasses = componentClasses.concat(['show']);
+      }
+      this.setState({ value, componentClasses });
+    } else {
+      this.setState({ value, componentClasses: ['time-component']});
+    }
   }
 
   handleTimeSelection(code){
@@ -35,11 +47,14 @@ class Selector extends Component {
       <Grid className='main-container'>
         <h1> Hey, looking for a new
           <select className='type-select'
-                  value={this.state.value} onChange={this.handleChange}>
-            <option value="movie">movie</option>
-            <option value="series">series</option>
+                  value={this.state.value}
+                  onChange={(e) => this.handleChange(e.target.value)}>
+            <option value='' />
+            <option value='movie'>movie</option>
+            <option value='series'>series</option>
           </select>
           ? </h1>
+        <div className={this.state.componentClasses.join(' ')}>
         <h3 className='first-question'>
           How many <b> minutes  </b> do you have? </h3>
         <TimeSelector
@@ -47,6 +62,7 @@ class Selector extends Component {
            handleClick={this.handleTimeSelection.bind(this)}
            {...this.props}
            />
+        </div>
       </Grid>
     );
   }
