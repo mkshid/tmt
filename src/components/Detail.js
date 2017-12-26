@@ -5,6 +5,9 @@ import React, { Component } from 'react';
 import {isEmpty as l_isEmpty} from 'lodash';
 
 import './Detail.css';
+import FilmDetail from './FilmDetail';
+import TvDetail from './TvDetail';
+
 import { API_KEY as api_key, BASE_URL } from '../settings';
 
 export default class Detail extends Component {
@@ -12,7 +15,7 @@ export default class Detail extends Component {
   constructor (props){
     super(props);
     this.state = {
-      film: {}
+      data: {}
     };
   }
 
@@ -26,14 +29,14 @@ export default class Detail extends Component {
       params: {
         api_key
       }
-    }).then(({data}) => this.setState({film: data}));
+    }).then(({data}) => this.setState({data}));
   }
 
   render(){
-    const { history } = this.props;
-    const { film } = this.state;
+    const { match: {params: {type} }, history } = this.props;
+    const { data } = this.state;
 
-    if(l_isEmpty(film)){
+    if(l_isEmpty(data)){
       return(
         <div>
 	  <ReactLoading
@@ -42,12 +45,9 @@ export default class Detail extends Component {
         </div>
       );
     }
-
-    let genres = [];
-    let productors = [];
-    const title = film.hasOwnProperty('title') ? film.title : film.name;
-    film.genres.forEach((g) => genres.push(g.name));
-    film.production_companies.forEach((pc) => productors.push(pc.name));
+    const title = type === 'movie' ? data.title : data.name;
+    const DetailComponent = type === 'movie' ?
+            <FilmDetail film={data} /> : <TvDetail tv={data}/>;
 
     return(
       <Grid className='main-container'>
@@ -57,23 +57,9 @@ export default class Detail extends Component {
              onClick={() => history.goBack()}>
              <i>⬅</i>
           </span>
-          <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+          <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
                alt={title} />
-          <section className='info'>
-            <article> 
-              <h1>{title} </h1>
-              <h3>{film.tagline}</h3>
-              <h3>{genres.join(', ')} </h3>
-              <h3>{productors.join(', ')}</h3>
-              <h3>Duration: {film.runtime} min </h3>
-              <h3>Vote: {film.vote_average}</h3>
-            </article>
-            <section className='overview'>
-              <article>
-                {film.overview}
-              </article>
-            </section>
-          </section>
+          {DetailComponent}
         </div>
       </Grid>
     );
