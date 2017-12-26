@@ -8,7 +8,7 @@
 }
 
 /* Extra Small Devices, Phones */
-@media screen and (min-width : 480px) {
+@media screen and (min-width : 320px) {
   .timers-container {
     grid-template-columns: 120px 120px;
   }
