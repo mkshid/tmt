@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import Select from 'react-select';
 import { Grid } from 'react-bootstrap';
-import TimeSelector from './TimeSelector';
+import React, { Component } from 'react';
+import 'react-select/dist/react-select.css';
 
 import './Selector.css';
+import { GENRES } from '../consts';
+import TimeSelector from './TimeSelector';
 import { PROJECT_NAME } from '../settings';
+
 
 class Selector extends Component {
 
@@ -12,7 +16,8 @@ class Selector extends Component {
 
     this.state = {
       value: '',
-      componentClasses: ['time-component']
+      componentClasses: ['time-component'],
+      genres: []
     };
   }
 
@@ -27,6 +32,10 @@ class Selector extends Component {
     } else {
       this.setState({ value, componentClasses: ['time-component']});
     }
+  }
+
+  handleSelectChange(genres){
+    this.setState({genres});
   }
 
   handleTimeSelection(code){
@@ -67,6 +76,18 @@ class Selector extends Component {
             <option value='series'>series</option>
           </select>
           ? </h1>
+
+        <Select
+           value={this.state.genres}
+	   onChange={this.handleSelectChange.bind(this)}
+           multi={true}
+           simpleValue
+           closeOnSelect={false}
+           valueKey='id'
+           labelKey='name'
+           options={GENRES}
+           />
+
         <div className={this.state.componentClasses.join(' ')}>
         <h3 className='first-question'>
           How many <b> minutes  </b> do you have? </h3>
