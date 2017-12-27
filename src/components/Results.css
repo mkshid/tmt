@@ -27,6 +27,14 @@
   height: 60px;
 }
 
+.back-to-top {
+  grid-row-start: 3;
+  grid-column-start: 3;
+  grid-column-end: 3;
+  font-size: 45px;
+  height: 60px;
+}
+
 .prev-movies:hover,
 .next-movies:hover {
   color: grey;
@@ -112,6 +120,9 @@
   .loader {
     margin-top: 40%;
   }
+  .back-to-top {
+    display: none;
+  }
 }
 
 /* Medium Devices, Desktops */
@@ -122,6 +133,9 @@
  }
   .loader {
     margin-top: 25%;
+  }
+  .back-to-top {
+    display: none;
   }
 }
 

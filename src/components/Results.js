@@ -6,6 +6,7 @@ import {isEmpty as l_isEmpty} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Results.css';
+import ScrollToTopButton from './ScrollToTopButton';
 import { PROJECT_NAME, API_KEY as api_key, BASE_URL } from '../settings';
 
 
@@ -127,6 +128,7 @@ class Results extends Component {
              onClick={()=>this.next_movies()}>
             <i className='fa fa-arrow-circle-right' aria-hidden='true'></i>
           </span>
+          <ScrollToTopButton scrollStepInPx="50" delayInMs="16.66"/>
         </div>
         <div>
         </div>
