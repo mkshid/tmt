@@ -7,8 +7,10 @@ import {isEmpty as l_isEmpty} from 'lodash';
 import './Detail.css';
 import FilmDetail from './FilmDetail';
 import TvDetail from './TvDetail';
+import ScrollToTopButton from './ScrollToTopButton';
 
 import { API_KEY as api_key, BASE_URL } from '../settings';
+
 
 export default class Detail extends Component {
 
@@ -60,6 +62,7 @@ export default class Detail extends Component {
           <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
                alt={title} />
           {DetailComponent}
+          <ScrollToTopButton scrollStepInPx="50" delayInMs="16.66"/>
         </div>
       </Grid>
     );

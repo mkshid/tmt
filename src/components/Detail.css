@@ -24,6 +24,14 @@
   margin-top: 15%;
 }
 
+.detail-grid .back-to-top {
+  grid-row-end: 6;
+  grid-column-end: 2;
+  font-size: 45px;
+  height: 60px;
+  justify-self: right;
+}
+
 
 /* Media queries */
 
