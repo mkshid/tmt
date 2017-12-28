@@ -88,6 +88,7 @@ class Selector extends Component {
            valueKey='id'
            labelKey='name'
            options={GENRES}
+           placeholder='Select genres you like...'
            />
 
         <div className={this.state.componentClasses.join(' ')}>
