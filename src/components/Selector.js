@@ -40,7 +40,7 @@ class Selector extends Component {
 
   handleTimeSelection(code){
     this.props.history.push(
-      `${PROJECT_NAME}/results/${this.state.value}/${code}`);
+      `${PROJECT_NAME}/results/${this.state.value}/${code}/${this.state.genres}`);
   }
 
   render(){

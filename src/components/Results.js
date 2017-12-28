@@ -2,8 +2,11 @@ import axios from 'axios';
 import { Grid } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 import React, { Component } from 'react';
-import {isEmpty as l_isEmpty} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import {
+  isEmpty as l_isEmpty,
+  isUndefined as l_isUndefined
+} from 'lodash';
 
 import './Results.css';
 import ScrollToTopButton from './ScrollToTopButton';
@@ -33,6 +36,7 @@ class Results extends Component {
     const type = params.type === 'series'? 'tv' : params.type;
     let gte = parseInt(time[0], 10);
     let lte = parseInt(time[1], 10);
+    const genres = l_isUndefined(params.genres) ? '' : params.genres;
 
     gte = !isNaN(gte) ? gte : history.push(`${PROJECT_NAME}/`);
     lte = !isNaN(lte) ? lte : '';
@@ -42,6 +46,7 @@ class Results extends Component {
         api_key,
         'with_runtime.gte': gte,
         'with_runtime.lte': lte,
+        'with_genres': genres,
         page: this.state.page
       }
     }).then(({data}) => {

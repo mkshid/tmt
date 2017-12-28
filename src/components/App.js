@@ -25,7 +25,7 @@ class App extends Component {
         <div>
           <NavBar />
           <Route exact path={root_url} component={Selector}/>
-          <Route exact path={`${root_url}results/:type/:time`}
+          <Route exact path={`${root_url}results/:type/:time/:genres?`}
                  component={Results}/>
           <Route exact path={`${root_url}:type/:movie_id`}
                  component={Detail}/>
