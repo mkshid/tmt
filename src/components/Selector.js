@@ -2,6 +2,7 @@ import Select from 'react-select';
 import { Grid } from 'react-bootstrap';
 import React, { Component } from 'react';
 import 'react-select/dist/react-select.css';
+import { isEmpty as l_isEmpty } from 'lodash';
 
 import './Selector.css';
 import { GENRES } from '../consts';
@@ -16,7 +17,8 @@ class Selector extends Component {
 
     this.state = {
       value: '',
-      componentClasses: ['time-component'],
+      second_question_cssClasses: ['second-question'],
+      third_question_cssClasses: ['third-question'],
       genres: []
     };
   }
@@ -24,13 +26,13 @@ class Selector extends Component {
   handleChange(value) {
 
     if (value !== ''){
-      let { componentClasses } = this.state;
-      if (componentClasses.length === 1){
-        componentClasses = componentClasses.concat(['show']);
+      let { second_question_cssClasses } = this.state;
+      if (second_question_cssClasses.length === 1){
+        second_question_cssClasses = second_question_cssClasses.concat(['show']);
       }
-      this.setState({ value, componentClasses });
+      this.setState({ value, second_question_cssClasses });
     } else {
-      this.setState({ value, componentClasses: ['time-component']});
+      this.setState({ value, second_question_cssClasses: ['second-question']});
     }
   }
 
@@ -38,8 +40,21 @@ class Selector extends Component {
     this.setState({genres});
   }
 
+  handleSelectClose(){
+    if (!l_isEmpty(this.state.genres)){
+      let { third_question_cssClasses } = this.state;
+      if (third_question_cssClasses.length === 1){
+        third_question_cssClasses = third_question_cssClasses.concat(['show']);
+      }
+      this.setState({third_question_cssClasses });
+    } else {
+      this.setState({ third_question_cssClasses: ['third-question']});
+    }
+  }
+
   handleTimeSelection(code){
-    const { value, genres } = this.state;
+    let { value, genres } = this.state;
+    genres = genres === '-1' ? '' : genres;
     this.props.history.push(
       `${PROJECT_NAME}/results/${value}/${code}/${genres}`
     );
@@ -69,36 +84,44 @@ class Selector extends Component {
             ? movie_times: series_times;
     return(
       <Grid className='main-container'>
-        <h1> Hey, looking for a new
-          <select className='type-select'
-                  value={this.state.value}
-                  onChange={(e) => this.handleChange(e.target.value)}>
-            <option value='' />
-            <option value='movie'>movie</option>
-            <option value='series'>series</option>
-          </select>
-          ? </h1>
+        <div className='selector-grid'>
+          <span className='first-question'>
+            <h1> Hey, looking for a new
+              <select className='type-select'
+                      value={this.state.value}
+                      onChange={(e) => this.handleChange(e.target.value)}>
+                <option value='' />
+                <option value='movie'>movie</option>
+                <option value='series'>series</option>
+              </select>
+              ? </h1>
+          </span>
 
-        <Select
-           value={this.state.genres}
-	   onChange={this.handleSelectChange.bind(this)}
-           multi={true}
-           simpleValue
-           closeOnSelect={false}
-           valueKey='id'
-           labelKey='name'
-           options={GENRES}
-           placeholder='Select genres you like...'
-           />
+          <span className={this.state.second_question_cssClasses.join(' ')}>
+            <Select
+               value={this.state.genres}
+	       onChange={this.handleSelectChange.bind(this)}
+               multi={true}
+               simpleValue
+               closeOnSelect={false}
+               valueKey='id'
+               labelKey='name'
+               options={GENRES}
+               placeholder='Select genres you like...'
+               onClose={this.handleSelectClose.bind(this)}
+               />
+          </span>
 
-        <div className={this.state.componentClasses.join(' ')}>
-        <h3 className='first-question'>
-          How many <b> minutes  </b> do you have? </h3>
-        <TimeSelector
-           times={times}
-           handleClick={this.handleTimeSelection.bind(this)}
-           {...this.props}
-           />
+          <span className={this.state.third_question_cssClasses.join(' ')}>
+            <h3>
+              How many <b> minutes  </b> do you have? </h3>
+            <TimeSelector
+               times={times}
+               handleClick={this.handleTimeSelection.bind(this)}
+               {...this.props}
+               />
+          </span>
+
         </div>
       </Grid>
     );

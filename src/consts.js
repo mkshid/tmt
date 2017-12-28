@@ -1,5 +1,9 @@
 export const GENRES =  [
     {
+      'id': -1,
+      'name': 'Any'
+    },
+    {
       'id': 28,
       'name': 'Action'
     },
