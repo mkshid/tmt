@@ -36,7 +36,8 @@ class Results extends Component {
     const type = params.type === 'series'? 'tv' : params.type;
     let gte = parseInt(time[0], 10);
     let lte = parseInt(time[1], 10);
-    const genres = l_isUndefined(params.genres) ? '' : params.genres;
+    const genres = (l_isUndefined(params.genres) ? '' :
+                    params.genres.split(',').join('|'));
 
     gte = !isNaN(gte) ? gte : history.push(`${PROJECT_NAME}/`);
     lte = !isNaN(lte) ? lte : '';
@@ -105,7 +106,7 @@ class Results extends Component {
                onClick={() => history.push(`${PROJECT_NAME}/${type}/${film.id}`)}
             > More... </div>
         </div>
-        <img src={`https://image.tmdb.org/t/p/w500${film.poster_path}`}
+        <img src={`https://image.tmdb.org/t/p/w300${film.poster_path}`}
              alt={film.title}
              />
       </div>
