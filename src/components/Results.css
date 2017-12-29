@@ -15,16 +15,12 @@
   grid-row-start: 1;
   grid-column-start: 1;
   grid-column-end: 1;
-  font-size: 45px;
-  height: 60px;
 }
 
 .next-movies {
   grid-row-start: 1;
   grid-column-start: 3;
   grid-column-end: 3;
-  font-size: 45px;
-  height: 60px;
 }
 
 .results-container .back-to-top {
@@ -33,11 +29,6 @@
   grid-column-end: 3;
   font-size: 45px;
   height: 60px;
-}
-
-.prev-movies:hover,
-.next-movies:hover {
-  color: grey;
 }
 
 .loader {
