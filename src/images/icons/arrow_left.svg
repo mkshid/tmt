@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="4_1920" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-380.000000, -612.000000)" opacity="0.5">
+        <path d="M400,652 C388.954305,652 380,643.045695 380,632 C380,620.954305 388.954305,612 400,612 C411.045695,612 420,620.954305 420,632 C420,643.045695 411.045695,652 400,652 Z M396,636.59 L397.41,638 L403.41,632 L397.41,626 L396,627.41 L400.58,632 L396,636.59 Z" id="ic_arrow" fill="#FFFFFF" transform="translate(400.000000, 632.000000) rotate(180.000000) translate(-400.000000, -632.000000) "></path>
+    </g>
+</svg>

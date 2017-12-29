@@ -28,7 +28,7 @@ export default class ScrollToTopButton extends Component {
       <span
          className='back-to-top pointer'
          onClick={() => this.scrollToTop()}>
-        <i className='fa fa-arrow-circle-up' aria-hidden='true'></i>
+        <div className='icon arrow-up' aria-hidden='true'></div>
       </span>
     );
   }

@@ -127,12 +127,12 @@ class Results extends Component {
              className='prev-movies pointer'
              onClick={()=>this.prev_movies()}
             hidden={start === 0 ? true : false }>
-            <i className='fa fa-arrow-circle-left' aria-hidden='true'></i>
+            <div className='icon arrow-left' aria-hidden='true'></div>
           </span>
           <span
              className='next-movies pointer'
              onClick={()=>this.next_movies()}>
-            <i className='fa fa-arrow-circle-right' aria-hidden='true'></i>
+            <div className='icon arrow-right' aria-hidden='true'></div>
           </span>
           <ScrollToTopButton scrollStepInPx="50" delayInMs="16.66"/>
         </div>

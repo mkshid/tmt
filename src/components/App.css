@@ -37,3 +37,20 @@ html, body {
 .navbar-text a {
   color: white;
 }
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+.icon:hover {
+  opacity: 0.8;
+}
+.arrow-up {
+  background-image: url(../images/icons/arrow_up.svg);
+}
+.arrow-right {
+  background-image: url(../images/icons/arrow_right.svg);
+}
+.arrow-left {
+  background-image: url(../images/icons/arrow_left.svg);
+}

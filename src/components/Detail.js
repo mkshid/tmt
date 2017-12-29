@@ -57,7 +57,7 @@ export default class Detail extends Component {
           <span
              className='prev-movies pointer align-left'
              onClick={() => history.goBack()}>
-            <i className='fa fa-arrow-circle-left' aria-hidden='true'></i>
+            <div className='icon arrow-left' aria-hidden='true'></div>
           </span>
           <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
                alt={title} />
