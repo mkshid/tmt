@@ -85,7 +85,7 @@ class Selector extends Component {
     return(
       <Grid className='main-container'>
         <div className='selector-grid'>
-          <span className='first-question'>
+          <section className='first-question'>
             <h1> Hey, looking for a new
               <select className='type-select'
                       value={this.state.value}
@@ -95,9 +95,9 @@ class Selector extends Component {
                 <option value='series'>series</option>
               </select>
               ? </h1>
-          </span>
+          </section>
 
-          <span className={this.state.second_question_cssClasses.join(' ')}>
+          <section className={this.state.second_question_cssClasses.join(' ')}>
             <Select
                value={this.state.genres}
 	       onChange={this.handleSelectChange.bind(this)}
@@ -110,9 +110,9 @@ class Selector extends Component {
                placeholder='Select genres you like...'
                onClose={this.handleSelectClose.bind(this)}
                />
-          </span>
+          </section>
 
-          <span className={this.state.third_question_cssClasses.join(' ')}>
+          <section className={this.state.third_question_cssClasses.join(' ')}>
             <h3>
               How many <b> minutes  </b> do you have? </h3>
             <TimeSelector
@@ -120,7 +120,7 @@ class Selector extends Component {
                handleClick={this.handleTimeSelection.bind(this)}
                {...this.props}
                />
-          </span>
+          </section>
 
         </div>
       </Grid>
