@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 import './App.css';
 
 import NavBar from './Navbar';
 import Selector from './Selector';
+import SelectGenres from './SelectGenres';
 import Results from './Results';
 import Detail from './Detail';
 import About from './About';
@@ -24,13 +26,17 @@ class App extends Component {
       <Router>
         <div>
           <NavBar />
+          <Switch>
           <Route exact path={root_url} component={Selector}/>
-          <Route exact path={`${root_url}results/:type/:time/:genres?`}
+          <Route exact path={`${root_url}:type/:time`}
+                 component={SelectGenres}/>
+          <Route path={`${root_url}results/:type/:time/:genres?`}
                  component={Results}/>
-          <Route exact path={`${root_url}:type/:movie_id`}
+          <Route exact path={`${root_url}detail/:type/:movie_id`}
                  component={Detail}/>
-          <Route exact path={`${root_url}about`}
+          <Route path={`${root_url}about`}
                  component={About} />
+          </Switch>
         </div>
       </Router>
     );
