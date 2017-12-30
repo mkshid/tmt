@@ -110,15 +110,19 @@ class Selector extends Component {
           </section>
 
           <section className={this.state.second_question_cssClasses.join(' ')}>
-            <h3>
-              How many <b> minutes  </b> do you have? </h3>
+            <h3>How many <b> minutes  </b> do you have? </h3>
             <TimeSelector
                times={times}
                handleClick={this.handleTimeSelection.bind(this)}
                {...this.props}
                />
           </section>
+
+
           <section className={this.state.third_question_cssClasses.join(' ')}>
+            <h3> Which kind of <b> {this.state.value} </b>
+              did you like last week?</h3>
+            <div className='genres-selector'>
             <Select
                value={this.state.genres}
                onChange={this.handleSelectChange.bind(this)}
@@ -131,6 +135,7 @@ class Selector extends Component {
                placeholder='Select genres you like...'
                onClose={this.handleSelectClose.bind(this)}
                />
+            </div>
           </section>
 
 
