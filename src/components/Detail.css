@@ -12,6 +12,7 @@
   grid-column-end: 1;
   justify-self: center;
   width: 50%;
+  border-radius: 4px;
 }
 
 .detail-grid .info {
