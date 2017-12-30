@@ -40,7 +40,7 @@ export default class SelectGenres extends Component {
     return(
       <div className='container'>
         <div className='selector-container'>
-          <section className='third-question show'>
+          <div className='third-question'>
             <h3> Which kind of <b> {type} </b>
               did you like last week?</h3>
             <div className='genres-selector'>
@@ -57,7 +57,7 @@ export default class SelectGenres extends Component {
                  onClose={this.handleSelectClose.bind(this)}
                  />
             </div>
-          </section>
+          </div>
         </div>
       </div>
     )
