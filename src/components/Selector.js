@@ -1,5 +1,4 @@
 import Select from 'react-select';
-import { Grid } from 'react-bootstrap';
 import React, { Component } from 'react';
 import 'react-select/dist/react-select.css';
 import { isEmpty as l_isEmpty } from 'lodash';
@@ -8,7 +7,6 @@ import './Selector.css';
 import { GENRES } from '../consts';
 import TimeSelector from './TimeSelector';
 import { PROJECT_NAME } from '../settings';
-import bkg2 from '../images/bkgs/2.jpg';
 
 class Selector extends Component {
 
@@ -17,11 +15,15 @@ class Selector extends Component {
 
     this.state = {
       value: '',
+      first_question_cssClasses: ['first-question'],
       second_question_cssClasses: ['second-question'],
       third_question_cssClasses: ['third-question'],
       genres: [],
       code: ''
     };
+  }
+  componentWillMount(){
+    document.body.className = 'bg first';
   }
 
   handleChange(value) {
@@ -51,13 +53,19 @@ class Selector extends Component {
 
   handleTimeSelection(code){
     document.body.classList.add('second');
+
     this.setState({code});
-    if (!l_isEmpty(this.state.genres)){
+
+    if (l_isEmpty(this.state.genres)){
       let { third_question_cssClasses } = this.state;
       if (third_question_cssClasses.length === 1){
         third_question_cssClasses = third_question_cssClasses.concat(['show']);
       }
-      this.setState({third_question_cssClasses });
+      this.setState({
+        third_question_cssClasses,
+        first_question_cssClasses: ['first-question', 'out'],
+        second_question_cssClasses: ['second-question', 'out']
+      });
     } else {
       this.setState({ third_question_cssClasses: ['third-question']});
     }
@@ -89,7 +97,7 @@ class Selector extends Component {
     return(
       <div className='container'>
         <div className='selector-container'>
-          <section className='first-question'>
+          <section className={this.state.first_question_cssClasses.join(' ')}>
             <h1> Hey, looking for a new
               <select className='type-select'
                       value={this.state.value}
@@ -110,6 +118,22 @@ class Selector extends Component {
                {...this.props}
                />
           </section>
+          <section className={this.state.third_question_cssClasses.join(' ')}>
+            <Select
+               value={this.state.genres}
+               onChange={this.handleSelectChange.bind(this)}
+               multi={true}
+               simpleValue
+               closeOnSelect={false}
+               valueKey='id'
+               labelKey='name'
+               options={GENRES}
+               placeholder='Select genres you like...'
+               onClose={this.handleSelectClose.bind(this)}
+               />
+          </section>
+
+
         </div>
       </div>
     );
@@ -121,17 +145,3 @@ export default Selector;
 
 
 
-// <section className={this.state.second_question_cssClasses.join(' ')}>
-//   <Select
-//      value={this.state.genres}
-//      onChange={this.handleSelectChange.bind(this)}
-//      multi={true}
-//      simpleValue
-//      closeOnSelect={false}
-//      valueKey='id'
-//      labelKey='name'
-//      options={GENRES}
-//      placeholder='Select genres you like...'
-//      onClose={this.handleSelectClose.bind(this)}
-//      />
-// </section>

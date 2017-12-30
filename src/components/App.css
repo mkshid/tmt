@@ -1,5 +1,4 @@
 .bg {
-  background-image: url(../images/bkgs/1.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -10,10 +9,27 @@
   background-position-x: center;
   background-position-y: center;
   background-repeat: no-repeat;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+}
+.bg.first {
+  background-image: url(../images/bkgs/1.jpg);
 }
 
 .bg.second {
   background-image: url(../images/bkgs/2.jpg);
+}
+.bg.third {
+  background-image: url(../images/bkgs/3.jpg);
+  -webkit-transition: 2s;
+  -moz-transition: 2s;
+  -o-transition: 2s;
+  transition: 2s;
+}
+.bg.detail {
+  background-image: url(../images/bkgs/4.jpg);
 }
 
 .main-container {

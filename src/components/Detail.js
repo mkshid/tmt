@@ -22,6 +22,7 @@ export default class Detail extends Component {
   }
 
   componentWillMount(){
+    document.body.className = 'bg detail';
     this.getData();
   }
 

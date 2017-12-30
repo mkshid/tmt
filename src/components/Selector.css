@@ -1,4 +1,5 @@
 .selector-container {
+  display: grid;
   margin-top: 12%;
 }
 
@@ -6,6 +7,14 @@
   font-size: 38px;
   font-weight: 800;
 }
+.out {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  display: none !important;
+}
+
 
 .selector-container .second-question {
   margin-top: 4%;
@@ -41,6 +50,7 @@
 .selector-container .third-question.show {
   opacity: 1;
   visibility: visible;
+  justify-self: center;
 }
 
 

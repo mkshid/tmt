@@ -26,6 +26,7 @@ class Results extends Component {
   }
 
   componentWillMount(){
+    document.body.className = 'bg third';
     this.getData();
   }
 
