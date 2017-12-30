@@ -52,7 +52,7 @@ class Selector extends Component {
   }
 
   handleTimeSelection(code){
-    document.body.classList.add('second');
+    document.body.className = 'bg second';
 
     this.setState({code});
 
