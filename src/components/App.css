@@ -1,11 +1,19 @@
-html, body {
-  background: url(../images/bkgs/1.jpg) no-repeat center center fixed;
+.bg {
+  background-image: url(../images/bkgs/1.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   color: white;
   text-align: center;
+  background-attachment: fixed;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+}
+
+.bg.second {
+  background-image: url(../images/bkgs/2.jpg);
 }
 
 .main-container {

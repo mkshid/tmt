@@ -8,7 +8,7 @@ import './Selector.css';
 import { GENRES } from '../consts';
 import TimeSelector from './TimeSelector';
 import { PROJECT_NAME } from '../settings';
-
+import bkg2 from '../images/bkgs/2.jpg';
 
 class Selector extends Component {
 
@@ -19,7 +19,8 @@ class Selector extends Component {
       value: '',
       second_question_cssClasses: ['second-question'],
       third_question_cssClasses: ['third-question'],
-      genres: []
+      genres: [],
+      code: ''
     };
   }
 
@@ -41,6 +42,16 @@ class Selector extends Component {
   }
 
   handleSelectClose(){
+    let { value, genres, code } = this.state;
+    genres = genres === '-1' ? '' : genres;
+    this.props.history.push(
+      `${PROJECT_NAME}/results/${value}/${code}/${genres}`
+    );
+  }
+
+  handleTimeSelection(code){
+    document.body.classList.add('second');
+    this.setState({code});
     if (!l_isEmpty(this.state.genres)){
       let { third_question_cssClasses } = this.state;
       if (third_question_cssClasses.length === 1){
@@ -52,13 +63,6 @@ class Selector extends Component {
     }
   }
 
-  handleTimeSelection(code){
-    let { value, genres } = this.state;
-    genres = genres === '-1' ? '' : genres;
-    this.props.history.push(
-      `${PROJECT_NAME}/results/${value}/${code}/${genres}`
-    );
-  }
 
   render(){
     const { value } = this.state;
@@ -106,7 +110,6 @@ class Selector extends Component {
                {...this.props}
                />
           </section>
-
         </div>
       </div>
     );
