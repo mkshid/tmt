@@ -83,8 +83,8 @@ class Selector extends Component {
     const times = value === '' || value === 'movie'
             ? movie_times: series_times;
     return(
-      <Grid className='main-container'>
-        <div className='selector-grid'>
+      <div className='container'>
+        <div className='selector-container'>
           <section className='first-question'>
             <h1> Hey, looking for a new
               <select className='type-select'
@@ -98,21 +98,6 @@ class Selector extends Component {
           </section>
 
           <section className={this.state.second_question_cssClasses.join(' ')}>
-            <Select
-               value={this.state.genres}
-	       onChange={this.handleSelectChange.bind(this)}
-               multi={true}
-               simpleValue
-               closeOnSelect={false}
-               valueKey='id'
-               labelKey='name'
-               options={GENRES}
-               placeholder='Select genres you like...'
-               onClose={this.handleSelectClose.bind(this)}
-               />
-          </section>
-
-          <section className={this.state.third_question_cssClasses.join(' ')}>
             <h3>
               How many <b> minutes  </b> do you have? </h3>
             <TimeSelector
@@ -123,10 +108,27 @@ class Selector extends Component {
           </section>
 
         </div>
-      </Grid>
+      </div>
     );
   }
 
 };
 
 export default Selector;
+
+
+
+// <section className={this.state.second_question_cssClasses.join(' ')}>
+//   <Select
+//      value={this.state.genres}
+//      onChange={this.handleSelectChange.bind(this)}
+//      multi={true}
+//      simpleValue
+//      closeOnSelect={false}
+//      valueKey='id'
+//      labelKey='name'
+//      options={GENRES}
+//      placeholder='Select genres you like...'
+//      onClose={this.handleSelectClose.bind(this)}
+//      />
+// </section>

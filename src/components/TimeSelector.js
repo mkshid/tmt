@@ -15,7 +15,7 @@ const TimeSelector = ({times, handleClick}) => {
 
   return (
       <div className='time-selector'>
-        <p> Give a time per day... </p>
+        <p className='title'> Give a time per day... </p>
         <div className='timers-container'>
           {time_selectors}
         </div>

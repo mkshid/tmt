@@ -1,15 +1,22 @@
 html, body {
-  background: url(../images/bg.jpg) no-repeat center center fixed;
+  background: url(../images/bkgs/1.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  color: white;
+  text-align: center;
 }
 
 .main-container {
   margin-top: 5%;
-  text-align: center;
-  color: white;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .bg-transparent{

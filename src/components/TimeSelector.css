@@ -1,5 +1,10 @@
 .time-selector {
-  margin-top: 4%;
+  margin-top: 6%;
+}
+
+.time-selector .title {
+  margin-bottom: 20px;
+  font-size: 16px;
 }
 
 .timers-container {
@@ -25,15 +30,19 @@
   width: 100px;
   height: 100px;
   margin: 10px;
-  border: 1px solid whitesmoke;
-  background: #f5f5f54d;
+  /* border: 1px solid whitesmoke; */
+  background-color: rgba(249,54,97,0.2);
+  /* background: #f5f5f54d; */
   border-radius: 4px;
   cursor: pointer;
 }
 .time:hover{
-  opacity: 0.8;
+  background-color: rgba(249,54,97,0.4);
 }
 
+
 .time > p {
+  font-size: 18px;
+  font-weight: 800;
   padding-top: 42%
 }
