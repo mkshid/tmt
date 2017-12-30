@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Grid } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 import React, { Component } from 'react';
 import {isEmpty as l_isEmpty} from 'lodash';
@@ -53,7 +52,7 @@ export default class Detail extends Component {
             <FilmDetail film={data} /> : <TvDetail tv={data}/>;
 
     return(
-      <Grid className='main-container'>
+      <div className='container'>
         <div className='detail-grid'>
           <span
              className='prev-movies pointer align-left'
@@ -65,7 +64,7 @@ export default class Detail extends Component {
           {DetailComponent}
           <ScrollToTopButton scrollStepInPx="50" delayInMs="16.66"/>
         </div>
-      </Grid>
+      </div>
     );
   }
 }
