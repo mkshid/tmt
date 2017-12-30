@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { Grid } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 import React, { Component } from 'react';
+
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
   isEmpty as l_isEmpty,
@@ -21,7 +21,8 @@ class Results extends Component {
     this.state = {
       data: { results: [] },
       start: 0, end: 8,
-      page: 1
+      page: 1, loading: true,
+      error: false, hide_next: false
     };
   }
 
@@ -32,7 +33,7 @@ class Results extends Component {
 
   getData(){
     const { match: { params }, history } = this.props;
-    const { data: { results } } = this.state;
+
     const time = params.time.split('-');
     const type = params.type === 'series'? 'tv' : params.type;
     let gte = parseInt(time[0], 10);
@@ -52,12 +53,28 @@ class Results extends Component {
         page: this.state.page
       }
     }).then(({data}) => {
-      this.setState({data: {
-        results: results.concat(data.results)
-      }});
+      const { start, end } = this.state;
+      const results = this.state.data.results.concat(data.results);
+      const reduced_results = results.slice(start, end);
+      const hide_next = reduced_results.length < 8 ? true : false;
+
+      this.setState(
+        {data: { ...data, results: results},
+         loading: false, hide_next
+        }, this.manage_exceptions);
+    }).catch(err => {
+      this.setState({error: true, loading: false},
+                    this.manage_exceptions);
     });
   }
 
+  manage_exceptions(){
+    const { history } = this.props;
+    const { data: { results }, error } = this.state;
+    if (l_isEmpty(results) || error){
+      setTimeout(() => history.push(`${PROJECT_NAME}`), 3000);
+    }
+  }
 
   next_movies(){
     const {data, end, page } = this.state;
@@ -80,17 +97,32 @@ class Results extends Component {
   }
 
   render(){
-    const { data, start, end } = this.state;
+    const { data, start, end, loading, error, hide_next } = this.state;
     const {match: { params }, history } = this.props;
     const type = params.type === 'series'? 'tv' : params.type;
 
-
-    if(l_isEmpty(data)){
+    if(loading){
       return(
         <div>
 	  <ReactLoading
              className='loader' type="spinningBubbles"
              color="white" />
+        </div>
+      );
+    }
+    if (error){
+      return(
+        <div className='container'>
+          <h1 className='error'>
+            An error occurred. Try later... redirecting...
+          </h1>
+        </div>
+      );
+    }
+    if (l_isEmpty(data.results)){
+      return(
+        <div className='container'>
+          <h1>Sorry there are any results... redirecting...</h1>
         </div>
       );
     }
@@ -113,10 +145,12 @@ class Results extends Component {
              />
       </div>
       );});
-
     return(
-      <Grid className='main-container'>
-        <h1> So here are your results... </h1>
+      <div className='container'>
+        <h1> So here are your results...
+          ({start === 0?start + 1:start} -
+          {end > data.results.length?data.results.length: end}/
+          {data.total_results})</h1>
         <div className='results-container'>
           <ReactCSSTransitionGroup
              transitionName='film-container'
@@ -133,6 +167,7 @@ class Results extends Component {
           </span>
           <span
              className='next-movies pointer'
+             hidden={hide_next}
              onClick={()=>this.next_movies()}>
             <div className='icon arrow-right' aria-hidden='true'></div>
           </span>
@@ -140,7 +175,7 @@ class Results extends Component {
         </div>
         <div>
         </div>
-      </Grid>
+      </div>
     );
 
   }

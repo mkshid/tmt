@@ -89,6 +89,10 @@
   text-decoration: underline;
 }
 
+.error {
+  color: #cc0000;
+}
+
 
 /* Media queries */
 
