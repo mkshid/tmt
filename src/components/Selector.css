@@ -66,6 +66,7 @@
   cursor: pointer;
   color: lightcoral;
   -webkit-appearance: none;
+  -webkit-border-radius: 0px;
   margin: 0 10px;
 }
 
