@@ -1,16 +1,16 @@
-import axios from 'axios';
+import { connect } from 'react-redux';
 import ReactLoading from 'react-loading';
 import React, { Component } from 'react';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
   isEmpty as l_isEmpty,
-  isUndefined as l_isUndefined
 } from 'lodash';
 
+import { fetchShows, nextShows, prevShows } from '../actions';
 import './Results.css';
 import ScrollToTopButton from './ScrollToTopButton';
-import { PROJECT_NAME, API_KEY as api_key, BASE_URL } from '../settings';
+import { PROJECT_NAME } from '../settings';
 
 
 class Results extends Component {
@@ -28,77 +28,15 @@ class Results extends Component {
 
   componentWillMount(){
     document.body.className = 'bg third';
-    this.getData();
-  }
-
-  getData(){
     const { match: { params }, history } = this.props;
-
-    const time = params.time.split('-');
-    const type = params.type === 'series'? 'tv' : params.type;
-    let gte = parseInt(time[0], 10);
-    let lte = parseInt(time[1], 10);
-    const genres = (l_isUndefined(params.genres) ? '' :
-                    params.genres.split(',').join('|'));
-
-    gte = !isNaN(gte) ? gte : history.push(`${PROJECT_NAME}/`);
-    lte = !isNaN(lte) ? lte : '';
-
-    axios.get(`${BASE_URL}/discover/${type}` , {
-      params: {
-        api_key,
-        'with_runtime.gte': gte,
-        'with_runtime.lte': lte,
-        'with_genres': genres,
-        page: this.state.page
-      }
-    }).then(({data}) => {
-      const { start, end } = this.state;
-      const results = this.state.data.results.concat(data.results);
-      const reduced_results = results.slice(start, end);
-      const hide_next = reduced_results.length < 8 ? true : false;
-
-      this.setState(
-        {data: { ...data, results: results},
-         loading: false, hide_next
-        }, this.manage_exceptions);
-    }).catch(err => {
-      this.setState({error: true, loading: false},
-                    this.manage_exceptions);
-    });
-  }
-
-  manage_exceptions(){
-    const { history } = this.props;
-    const { data: { results }, error } = this.state;
-    if (l_isEmpty(results) || error){
-      setTimeout(() => history.push(`${PROJECT_NAME}`), 3000);
-    }
-  }
-
-  next_movies(){
-    const {data, end, page } = this.state;
-    const new_start = end;
-    const new_end = end + 8;
-
-    if (new_end > data.results.length) {
-      this.setState(
-        {page: page + 1, start: new_start , end: new_end},
-        this.getData
-      );
-    } else {
-      this.setState({ start: new_start, end: new_end });
-    }
-  }
-
-  prev_movies(){
-    const { start } = this.state;
-    this.setState({ start: start - 8, end: start });
+    this.props.fetchShows(params, this.state.page, history);
   }
 
   render(){
-    const { data, start, end, loading, error, hide_next } = this.state;
-    const {match: { params }, history } = this.props;
+    const {match: { params }, history,
+           shows, loading, page, start, end,
+           nextShows, prevShows
+          } = this.props;
     const type = params.type === 'series'? 'tv' : params.type;
 
     if(loading){
@@ -110,24 +48,23 @@ class Results extends Component {
         </div>
       );
     }
-    if (error){
-      return(
-        <div className='container'>
-          <h1 className='error'>
-            An error occurred. Try later... redirecting...
-          </h1>
-        </div>
-      );
-    }
-    if (l_isEmpty(data.results)){
+    // if (error){
+    //   return(
+    //     <div className='container'>
+    //       <h1 className='error'>
+    //         An error occurred. Try later... redirecting...
+    //       </h1>
+    //     </div>
+    //   );
+    // }
+    if (l_isEmpty(shows.results)){
       return(
         <div className='container'>
           <h1>Sorry there are any results... redirecting...</h1>
         </div>
       );
     }
-
-    const reduced_results = data.results.slice(start, end);
+    const reduced_results = shows.results.slice(start, end);
     const results = reduced_results.map((film) => {
       const title = film.hasOwnProperty('title') ? film.title : film.name;
       return(
@@ -145,12 +82,13 @@ class Results extends Component {
              />
       </div>
       );});
+
     return(
       <div className='container'>
         <h1> So here are your results...
           ({start === 0?start + 1:start} -
-          {end > data.results.length?data.results.length: end}/
-          {data.total_results})</h1>
+          {end > shows.results.length?shows.results.length: end}/
+          {shows.total_results})</h1>
         <div className='results-container'>
           <ReactCSSTransitionGroup
              transitionName='film-container'
@@ -161,14 +99,14 @@ class Results extends Component {
           </ReactCSSTransitionGroup>
           <span
              className='prev-movies pointer'
-             onClick={()=>this.prev_movies()}
+             onClick={()=>prevShows(start)}
             hidden={start === 0 ? true : false }>
             <div className='icon arrow-left' aria-hidden='true'></div>
           </span>
           <span
              className='next-movies pointer'
-             hidden={hide_next}
-             onClick={()=>this.next_movies()}>
+             hidden={reduced_results.length < 8 ? true : false}
+             onClick={()=>nextShows(params, shows, end, page, history)}>
             <div className='icon arrow-right' aria-hidden='true'></div>
           </span>
           <ScrollToTopButton scrollStepInPx="50" delayInMs="16.66"/>
@@ -179,7 +117,14 @@ class Results extends Component {
     );
 
   }
-
 }
 
-export default Results;
+function mapStateToProps( {
+  shows, loading,
+  control: {start, end, page }}){
+  return {shows, loading, start, end, page};
+}
+
+export default connect(mapStateToProps, {
+  fetchShows, nextShows, prevShows
+})(Results);

@@ -22,14 +22,14 @@
   background-image: url(../images/bkgs/2.jpg);
 }
 .bg.third {
-  background-image: url(../images/bkgs/3.jpg);
+  background-image: url(../images/bkgs/4.jpg);
   -webkit-transition: 2s;
   -moz-transition: 2s;
   -o-transition: 2s;
   transition: 2s;
 }
 .bg.detail {
-  background-image: url(../images/bkgs/4.jpg);
+  background-image: url(../images/bkgs/3.jpg);
 }
 
 .main-container {
