@@ -85,10 +85,11 @@ class Results extends Component {
 
     return(
       <div className='container'>
-        <h1> So here are your results...
-          ({start === 0?start + 1:start} -
-          {end > shows.results.length?shows.results.length: end}/
-          {shows.total_results})</h1>
+        <h1> So here are your results...</h1>
+        <h4> {start === 0?start + 1:start} -
+          {end > shows.results.length?shows.results.length: end}
+          {' '} / {' '}
+          {shows.total_results}</h4>
         <div className='results-container'>
           <ReactCSSTransitionGroup
              transitionName='film-container'
