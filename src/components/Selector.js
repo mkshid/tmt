@@ -1,8 +1,11 @@
+import { connect } from 'react-redux';
 import React, { Component } from 'react';
 
 import './Selector.css';
 import TimeSelector from './TimeSelector';
 import { PROJECT_NAME } from '../settings';
+import { resetState } from '../actions';
+
 
 class Selector extends Component {
 
@@ -18,6 +21,7 @@ class Selector extends Component {
   }
   componentWillMount(){
     document.body.className = 'bg first';
+    this.props.resetState();
   }
 
   handleChange(value) {
@@ -90,7 +94,7 @@ class Selector extends Component {
 
 };
 
-export default Selector;
-
-
+export default connect(null, {
+  resetState
+})(Selector);
 

@@ -1,4 +1,7 @@
-import { NEXT_SHOWS, PREV_SHOWS } from '../actions/types';
+import {
+  NEXT_SHOWS, PREV_SHOWS,
+  RESET_CONTROLS
+} from '../actions/types';
 
 export default function(state={start: 0, end: 8, page: 1}, action){
   switch(action.type){
@@ -12,6 +15,8 @@ export default function(state={start: 0, end: 8, page: 1}, action){
       ...state,
       ...action.payload
     };
+  case RESET_CONTROLS:
+    return {start: 0, end: 8, page: 1};
   default:
     return state;
   }

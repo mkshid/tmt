@@ -10,6 +10,8 @@ import {
   STOP_LOADING,
   NEXT_SHOWS,
   PREV_SHOWS,
+  RESET_CONTROLS,
+  RESET_SHOWS
 } from './types';
 import { PROJECT_NAME, API_KEY as api_key, BASE_URL } from '../settings';
 
@@ -87,4 +89,11 @@ export function prevShows(start){
     type: PREV_SHOWS,
     payload: {start: start - 8 , end: start}
   });
+}
+
+export function resetState(){
+  return (dispatch) => {
+    dispatch({type: RESET_SHOWS});
+    dispatch({type: RESET_CONTROLS});
+  };
 }

@@ -1,4 +1,4 @@
-import { FETCH_SHOWS } from '../actions/types';
+import { FETCH_SHOWS, RESET_SHOWS } from '../actions/types';
 
 export default function(state={results: []}, action){
   switch(action.type){
@@ -7,6 +7,8 @@ export default function(state={results: []}, action){
       ...action.payload,
       results: state.results.concat(action.payload.results)
     };
+  case RESET_SHOWS:
+    return {results: []};
   default:
     return state;
   }
