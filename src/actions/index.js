@@ -20,7 +20,7 @@ function _fetch_shows(params, page, history){
   let gte = parseInt(time[0], 10);
   let lte = parseInt(time[1], 10);
   const genres = (l_isUndefined(params.genres) ? '' :
-                  params.genres.split(',').join(','));
+                  params.genres.split(',').join('|'));
 
   gte = !isNaN(gte) ? gte : history.push(`${PROJECT_NAME}/`);
   lte = !isNaN(lte) ? lte : '';
