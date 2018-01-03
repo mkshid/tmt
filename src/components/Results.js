@@ -23,7 +23,7 @@ class Results extends Component {
   render(){
     const {match: { params }, history,
            shows, loading, page, start, end,
-           nextShows, prevShows
+           error, nextShows, prevShows
           } = this.props;
     const type = params.type === 'series'? 'tv' : params.type;
 
@@ -36,15 +36,15 @@ class Results extends Component {
         </div>
       );
     }
-    // if (error){
-    //   return(
-    //     <div className='container'>
-    //       <h1 className='error'>
-    //         An error occurred. Try later... redirecting...
-    //       </h1>
-    //     </div>
-    //   );
-    // }
+    if (error){
+      return(
+        <div className='container'>
+          <h1 className='error'>
+            An error occurred. Try later... redirecting...
+          </h1>
+        </div>
+      );
+    }
     if (l_isEmpty(shows.results)){
       return(
         <div className='container'>
@@ -109,9 +109,9 @@ class Results extends Component {
 }
 
 function mapStateToProps( {
-  shows, loading,
+  shows, loading, error,
   control: {start, end, page }}){
-  return {shows, loading, start, end, page};
+  return {shows, loading, start, end, page, error};
 }
 
 export default connect(mapStateToProps, {

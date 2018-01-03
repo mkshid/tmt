@@ -5,13 +5,10 @@ import {
 } from 'lodash';
 
 import {
-  FETCH_SHOWS,
-  START_LOADING,
-  STOP_LOADING,
-  NEXT_SHOWS,
-  PREV_SHOWS,
-  RESET_CONTROLS,
-  RESET_SHOWS
+  FETCH_SHOWS, RESET_SHOWS,
+  START_LOADING, STOP_LOADING,
+  NEXT_SHOWS, PREV_SHOWS, RESET_CONTROLS,
+  SHOW_ERROR, RESET_ERROR
 } from './types';
 import { PROJECT_NAME, API_KEY as api_key, BASE_URL } from '../settings';
 
@@ -27,7 +24,7 @@ function _fetch_shows(params, page, history){
   gte = !isNaN(gte) ? gte : history.push(`${PROJECT_NAME}/`);
   lte = !isNaN(lte) ? lte : '';
 
-  return axios.get(`${BASE_URL}/discover/${type}` , {
+  return axios.get(`${BASE_URL}/discover/${type}`, {
     params: {
       api_key,
       'with_runtime.gte': gte,
@@ -50,7 +47,11 @@ export function fetchShows(params, page, history){
         }
         return dispatch({type: FETCH_SHOWS, payload: data});
       })
-      .catch(err => setTimeout(() => history.push(`${PROJECT_NAME}`), 3000));
+      .catch(err => {
+        dispatch({type: STOP_LOADING});
+        dispatch({type: SHOW_ERROR});
+        setTimeout(() => history.push(`${PROJECT_NAME}`), 3000);
+      });
   };
 }
 
@@ -71,7 +72,11 @@ export function nextShows(params, shows, end, page, history){
             payload: {page: page, start: new_start , end: new_end}
           });
         })
-        .catch(err => setTimeout(() => history.push(`${PROJECT_NAME}`), 3000));
+        .catch(err => {
+          dispatch({type: STOP_LOADING});
+          dispatch({type: SHOW_ERROR});
+          setTimeout(() => history.push(`${PROJECT_NAME}`), 3000);
+        });
     }
     else {
       dispatch({type: STOP_LOADING});
@@ -95,5 +100,6 @@ export function resetState(){
   return (dispatch) => {
     dispatch({type: RESET_SHOWS});
     dispatch({type: RESET_CONTROLS});
+    dispatch({type: RESET_ERROR});
   };
 }

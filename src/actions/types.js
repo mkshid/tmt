@@ -5,3 +5,5 @@ export const NEXT_SHOWS = 'next_shows';
 export const PREV_SHOWS = 'prev_shows';
 export const RESET_SHOWS = 'reset_shows';
 export const RESET_CONTROLS = 'reset_controls';
+export const SHOW_ERROR = 'show_error';
+export const RESET_ERROR = 'reset_error';
