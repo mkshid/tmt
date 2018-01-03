@@ -17,8 +17,10 @@ class Results extends Component {
 
   componentWillMount(){
     document.body.className = 'bg third';
-    const { match: { params }, history } = this.props;
-    this.props.fetchShows(params, this.state.page, history);
+    const { match: { params }, history, end, page } = this.props;
+    if (end === 8){
+      this.props.fetchShows(params, page, history);
+    }
   }
 
   render(){
