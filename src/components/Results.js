@@ -1,16 +1,13 @@
 import { connect } from 'react-redux';
 import ReactLoading from 'react-loading';
 import React, { Component } from 'react';
-
+import { isEmpty as l_isEmpty} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {
-  isEmpty as l_isEmpty,
-} from 'lodash';
 
-import { fetchShows, nextShows, prevShows } from '../actions';
 import './Results.css';
-import ScrollToTopButton from './ScrollToTopButton';
 import { PROJECT_NAME } from '../settings';
+import ScrollToTopButton from './ScrollToTopButton';
+import { fetchShows, nextShows, prevShows } from '../actions';
 
 
 class Results extends Component {
