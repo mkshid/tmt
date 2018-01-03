@@ -44,8 +44,8 @@
 }
 
 .bg-transparent{
-  background-color: #f8f8f800;
-  border-color: #f8f8f800;
+  background-color: rgba(248, 248, 248, 0);
+  border-color: rgba(248, 248, 248, 0);
 }
 
 .navbar-default .navbar-brand,
