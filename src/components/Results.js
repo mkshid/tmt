@@ -15,17 +15,6 @@ import { PROJECT_NAME } from '../settings';
 
 class Results extends Component {
 
-  constructor (props){
-    super(props);
-
-    this.state = {
-      data: { results: [] },
-      start: 0, end: 8,
-      page: 1, loading: true,
-      error: false, hide_next: false
-    };
-  }
-
   componentWillMount(){
     document.body.className = 'bg third';
     const { match: { params }, history } = this.props;
