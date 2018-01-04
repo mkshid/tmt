@@ -47,6 +47,7 @@ export default class SelectGenres extends Component {
               <Select
                  value={this.state.genres}
                  onChange={this.handleSelectChange.bind(this)}
+                 searchable={false}
                  multi={true}
                  simpleValue
                  closeOnSelect={false}
