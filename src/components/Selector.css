@@ -53,8 +53,9 @@
   margin: 0 10px;
 }
 
-.type-select options {
-  background: transparent;
+.select-type-option {
+  color: lightcoral;
+  font-size: 22px;
 }
 
 /* Media queries */

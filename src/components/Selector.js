@@ -64,6 +64,9 @@ class Selector extends Component {
 
     const times = value === '' || value === 'movie'
             ? movie_times: series_times;
+
+    const isFirefox = typeof InstallTrigger !== 'undefined';
+    const options_cName = isFirefox? '' : 'select-type-option';
     return(
       <div className='container'>
         <div className='selector-container'>
@@ -72,9 +75,11 @@ class Selector extends Component {
               <select className='type-select'
                       value={this.state.value}
                       onChange={(e) => this.handleChange(e.target.value)}>
-                <option value='' />
-                <option value='movie'>movie</option>
-                <option value='series'>series</option>
+                <option className={options_cName} value='' />
+                <option className={options_cName}
+                        value='movie'>movie</option>
+                <option className={options_cName}
+                        value='series'>series</option>
               </select>
               ? </h1>
           </section>
