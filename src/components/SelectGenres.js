@@ -2,10 +2,9 @@ import Select from 'react-select';
 import React, { Component } from 'react';
 import 'react-select/dist/react-select.css';
 
-import './Selector.css';
+import './SelectGenres.css';
 import { GENRES } from '../consts';
 import { PROJECT_NAME } from '../settings';
-
 
 
 export default class SelectGenres extends Component {
@@ -14,7 +13,8 @@ export default class SelectGenres extends Component {
     super(props);
 
     this.state = {
-      genres: []
+      genres: [],
+      dropdown_opened: false
     };
   }
 
@@ -37,14 +37,19 @@ export default class SelectGenres extends Component {
 
   render(){
     const { match: { params: { type } }} = this.props;
+    const { dropdown_opened } = this.state;
+    const ph_style = {color: dropdown_opened? '#aaa': 'white'};
+    const placeholder = <span style={ph_style}>Select genres you like...</span>;
+
     return(
       <div className='container'>
-        <div className='selector-container'>
+        <div className='genres-container'>
           <div className='third-question'>
             <h3> Which kind of <b> {type} </b>
               did you like last week?</h3>
             <div className='genres-selector'>
               <Select
+                 onOpen={()=>this.setState({dropdown_opened: true})}
                  value={this.state.genres}
                  onChange={this.handleSelectChange.bind(this)}
                  searchable={false}
@@ -54,7 +59,7 @@ export default class SelectGenres extends Component {
                  valueKey='id'
                  labelKey='name'
                  options={GENRES}
-                 placeholder='Select genres you like...'
+                 placeholder={placeholder}
                  onClose={this.handleSelectClose.bind(this)}
                  />
             </div>

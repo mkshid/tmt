@@ -37,25 +37,6 @@
   color: #FFFFFF;
 }
 
-.selector-container .third-question {
-  margin-top: 18%;
-  justify-self: center;
-  height: 500px;
-}
-
-.selector-container .third-question h3 {
-  font-size: 32px;
-}
-
-.selector-container .third-question h3 > b {
-  color: lightcoral;
-}
-
-.selector-container .third-question .genres-selector {
-  width: 80%;
-  margin: 6% 10%;
-}
-
 .type-select,
 .type-select:active,
 .type-select:focus{
