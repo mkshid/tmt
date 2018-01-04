@@ -48,6 +48,8 @@
   color: lightcoral;
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
+  -moz-appearance: none;
+  appearance: none;
   margin: 0 10px;
 }
 
