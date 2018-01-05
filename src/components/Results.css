@@ -123,9 +123,10 @@
 /* Medium Devices, Desktops */
 @media screen and (min-width : 992px) {
   .film-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 120px 120px 120px 120px;
     grid-template-rows: auto auto;
- }
+    justify-content: space-evenly;
+  }
   .loader {
     margin-top: 25%;
   }
