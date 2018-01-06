@@ -2,8 +2,10 @@ import React from 'react';
 
 const TvDetail = ({tv}) => {
   let genres = [];
+  let networks = [];
 
   tv.genres.forEach((g) => genres.push(g.name));
+  tv.networks.forEach((n) => networks.push(n.name));
 
   return (
     <section className='info'>
@@ -16,6 +18,8 @@ const TvDetail = ({tv}) => {
         <h3>Vote: {tv.vote_average}</h3>
         <h3>Status: {tv.status}</h3>
         <h3>First Air: {tv.first_air_date}</h3>
+        <h3>Network{networks.length > 1? 's' : '' }: {networks.join(', ')} </h3>
+        <h3><a href={tv.homepage} target='_blank'>{tv.homepage}</a></h3>
       </article>
       <section className='overview'>
         <article>
