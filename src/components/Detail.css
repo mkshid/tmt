@@ -31,6 +31,9 @@
   justify-self: right;
 }
 
+.imdb-logo {
+  width: 80px !important;
+}
 
 /* Media queries */
 
@@ -52,7 +55,7 @@
     grid-row-start: 2;
     grid-row-end: 2;
   }
-  .detail-grid img {
+  .detail-grid .poster {
     width: 100%;
   }
 }

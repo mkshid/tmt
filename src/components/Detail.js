@@ -49,7 +49,7 @@ export default class Detail extends Component {
     }
     const title = type === 'movie' ? data.title : data.name;
     const DetailComponent = type === 'movie' ?
-            <FilmDetail film={data} /> : <TvDetail tv={data}/>;
+            <FilmDetail film={data}/> : <TvDetail tv={data}/>;
 
     return(
       <div className='container'>
@@ -60,7 +60,7 @@ export default class Detail extends Component {
             <div className='icon arrow-left' aria-hidden='true'></div>
           </span>
           <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
-               alt={title} />
+               alt={title} className='poster'/>
           {DetailComponent}
           <ScrollToTopButton scrollStepInPx="50" delayInMs="16.66"/>
         </div>

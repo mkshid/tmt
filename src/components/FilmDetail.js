@@ -1,4 +1,5 @@
 import React from 'react';
+import imdb_logo from '../images/icons/imdb_logo.svg';
 
 const FilmDetail = ({film}) => {
 
@@ -17,6 +18,11 @@ const FilmDetail = ({film}) => {
         <h3>{productors.join(', ')}</h3>
         <h3>Duration: {film.runtime} min </h3>
         <h3>Vote: {film.vote_average}</h3>
+        <h3><a href={film.homepage} target='_blank'>{film.homepage}</a></h3>
+        <a href={`http://www.imdb.com/title/${film.imdb_id}/`} target='_blank'>
+          <img src={imdb_logo} className='imdb-logo pointer'
+               alt='imdb link'/>
+        </a>
       </article>
       <section className='overview'>
         <article>
