@@ -37,58 +37,6 @@
   margin-right: auto;
 }
 
-.film {
-  position: relative;
-  height: 250px;
-  width: 190px;
-  border-radius: 4px;
-}
-
-.film img {
-  width: 100%;
-  height: 90%;
-  border-radius: 4px;
-}
-
-.film .info {
-  position: absolute;
-  width: 100%;
-  height: 90%;
-  padding: 4%;
-  font-weight: bold;
-  font-size: 16px;
-  transition: all .2s ease-out;
-  /* Hide the text until hover */
-  color: transparent;
-  border-radius: 4px;
-}
-
-.film .info:hover {
-  background: rgba(0, 0, 0, 0.7);
-  transition: all .2s ease-in;
-  color: white;
- }
-
-.film .vote {
-  text-align: right;
-}
-
-.film .title {
-  margin-top: 45%;
-  text-align: left;
-}
-
-.film .more {
-  text-align: right;
-  margin-top: 20%;
-  width: 100%;
-}
-
-.film .more:hover {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 .error {
   color: #cc0000;
 }

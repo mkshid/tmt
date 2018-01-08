@@ -2,6 +2,7 @@ import axios from 'axios';
 import ReactLoading from 'react-loading';
 import React, { Component } from 'react';
 import {isEmpty as l_isEmpty} from 'lodash';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Detail.css';
 import FilmDetail from './FilmDetail';
@@ -31,14 +32,27 @@ export default class Detail extends Component {
       params: {
         api_key
       }
-    }).then(({data}) => this.setState({data}));
+    }).then(({data}) => {
+      this.setState({data});
+      this.getRecommendations();
+    });
   }
+
+  getRecommendations(){
+    const { match: { params: { movie_id, type } } } = this.props;
+    axios.get(`${BASE_URL}/${type}/${movie_id}/recommendations`, {
+      params: {
+        api_key
+      }
+    }).then(({data}) => this.setState({recommended_shows: data}));
+  }
+
 
   render(){
     const { match: {params: {type} }, history } = this.props;
-    const { data } = this.state;
+    const { data, recommended_shows } = this.state;
 
-    if(l_isEmpty(data)){
+    if(l_isEmpty(data) || l_isEmpty(recommended_shows)){
       return(
         <div>
 	  <ReactLoading
@@ -47,6 +61,13 @@ export default class Detail extends Component {
         </div>
       );
     }
+
+    // const reduced_results = recommended_shows.results.slice(0, 8);
+    // const results = reduced_results.map((film) => {
+    //   return(
+
+    //   );});
+
     const title = type === 'movie' ? data.title : data.name;
     const DetailComponent = type === 'movie' ?
             <FilmDetail film={data}/> : <TvDetail tv={data}/>;
@@ -62,7 +83,16 @@ export default class Detail extends Component {
           <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
                alt={title} className='poster'/>
           {DetailComponent}
-          <ScrollToTopButton scrollStepInPx="50" delayInMs="16.66"/>
+          <div className='results-container'>
+            <ReactCSSTransitionGroup
+               transitionName='film-container'
+               transitionEnterTimeout={500}
+               transitionLeaveTimeout={300}
+               className='film-container'>
+
+            </ReactCSSTransitionGroup>
+          </div>
+        <ScrollToTopButton scrollStepInPx="50" delayInMs="16.66"/>
         </div>
       </div>
     );

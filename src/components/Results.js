@@ -5,7 +5,7 @@ import { isEmpty as l_isEmpty} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Results.css';
-import { PROJECT_NAME } from '../settings';
+import Film from './Film';
 import ScrollToTopButton from './ScrollToTopButton';
 import { fetchShows, nextShows, prevShows } from '../actions';
 
@@ -53,23 +53,9 @@ class Results extends Component {
       );
     }
     const reduced_results = shows.results.slice(start, end);
-    const results = reduced_results.map((film) => {
-      const title = film.hasOwnProperty('title') ? film.title : film.name;
-      return(
-      <div className='film' key={film.id}>
-        <div className='info'>
-          <div className='vote'>{film.vote_average}/10</div>
-          <div className='title'>{title}</div>
-          <div className='more'
-               onClick={() => history.push(
-            `${PROJECT_NAME}/detail/${type}/${film.id}`)}
-            > More... </div>
-        </div>
-        <img src={`https://image.tmdb.org/t/p/w300${film.poster_path}`}
-             alt={film.title}
-             />
-      </div>
-      );});
+    const results = reduced_results.map(
+      (film) => <Film key={film.id} film={film} history={history} type={type}/>
+    );
 
     return(
       <div className='container'>
@@ -104,7 +90,6 @@ class Results extends Component {
         </div>
       </div>
     );
-
   }
 }
 
