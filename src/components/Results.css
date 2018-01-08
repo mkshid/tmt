@@ -6,7 +6,7 @@
 .film-container {
   display: grid;
   justify-items: center;
-  margin-top: 10%;
+  margin-top: 3%;
   grid-column-start: 2;
   grid-column-end: 2;
 }
@@ -111,7 +111,8 @@
 @media screen and (min-width : 768px) {
   .film-container {
     grid-template-columns: 1fr 1fr 1fr;
- }
+    margin-top: 10%;
+  }
   .loader {
     margin-top: 40%;
   }

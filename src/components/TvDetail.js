@@ -9,17 +9,21 @@ const TvDetail = ({tv}) => {
 
   return (
     <section className='info'>
-      <article> 
+      <article className='title'>
         <h1>{tv.name} </h1>
-        <h3>{genres.join(', ')} </h3>
-        <h3>Episodes: {tv.number_of_episodes}</h3>
-        <h3>Seasons: {tv.number_of_seasons}</h3>
-        <h3>Duration: {tv.episode_run_time.join(' ~ ')} min </h3>
-        <h3>Vote: {tv.vote_average}</h3>
-        <h3>Status: {tv.status}</h3>
-        <h3>First Air: {tv.first_air_date}</h3>
-        <h3>Network{networks.length > 1? 's' : '' }: {networks.join(', ')} </h3>
-        <h3><a href={tv.homepage} target='_blank'>{tv.homepage}</a></h3>
+      </article>
+      <article>
+        <h4>{genres.join(', ').toUpperCase()}</h4>
+        <h4>Episodes: {tv.number_of_episodes}</h4>
+        <h4>Seasons: {tv.number_of_seasons}</h4>
+        <h4>Duration: {tv.episode_run_time.join(' ~ ')} min </h4>
+        <h4>Vote: {tv.vote_average}</h4>
+        <h4>Status: {tv.status}</h4>
+        <h4>First Air: {tv.first_air_date}</h4>
+        <h4>Network{networks.length > 1? 's' : '' }: {networks.join(', ')} </h4>
+      </article>
+      <article className='links'>
+        <a href={tv.homepage} target='_blank'>{tv.homepage? 'Homepage': ''}</a>
       </article>
       <section className='overview'>
         <article>
