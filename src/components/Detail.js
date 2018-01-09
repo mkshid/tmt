@@ -5,6 +5,7 @@ import {isEmpty as l_isEmpty} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Detail.css';
+import Film from './Film';
 import FilmDetail from './FilmDetail';
 import TvDetail from './TvDetail';
 import ScrollToTopButton from './ScrollToTopButton';
@@ -17,7 +18,9 @@ export default class Detail extends Component {
   constructor (props){
     super(props);
     this.state = {
-      data: {}
+      data: {},
+      recommended_shows: {},
+      start: 0, end: 8
     };
   }
 
@@ -47,10 +50,19 @@ export default class Detail extends Component {
     }).then(({data}) => this.setState({recommended_shows: data}));
   }
 
+  prevShows(){
+    let { start } = this.state;
+    this.setState({start: start - 8, end: start});
+  }
+
+  nextShows(){
+    let { end } = this.state;
+    this.setState({start: end, end: end + 8});
+  }
 
   render(){
     const { match: {params: {type} }, history } = this.props;
-    const { data, recommended_shows } = this.state;
+    const { data, recommended_shows, start, end } = this.state;
 
     if(l_isEmpty(data) || l_isEmpty(recommended_shows)){
       return(
@@ -62,11 +74,10 @@ export default class Detail extends Component {
       );
     }
 
-    // const reduced_results = recommended_shows.results.slice(0, 8);
-    // const results = reduced_results.map((film) => {
-    //   return(
-
-    //   );});
+    const reduced_results = recommended_shows.results.slice(start, end);
+    const results = reduced_results.map(
+      (film) => <Film key={film.id} film={film} history={history} type={type}/>
+    );
 
     const title = type === 'movie' ? data.title : data.name;
     const DetailComponent = type === 'movie' ?
@@ -83,14 +94,27 @@ export default class Detail extends Component {
           <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
                alt={title} className='poster'/>
           {DetailComponent}
-          <div className='results-container'>
-            <ReactCSSTransitionGroup
-               transitionName='film-container'
-               transitionEnterTimeout={500}
-               transitionLeaveTimeout={300}
-               className='film-container'>
-
-            </ReactCSSTransitionGroup>
+          <div className='recommended-grid'>
+            <h1 className='title'> You might even like these! </h1>
+            <span
+               className='prev-movies pointer'
+               onClick={()=>this.prevShows()}
+              hidden={start === 0 ? true : false }>
+              <div className='icon arrow-left' aria-hidden='true'></div>
+          </span>
+          <span
+             className='next-movies pointer'
+             hidden={reduced_results.length < 8 ? true : false}
+             onClick={()=>this.nextShows()}>
+            <div className='icon arrow-right' aria-hidden='true'></div>
+          </span>
+          <ReactCSSTransitionGroup
+             transitionName='recommended-shows-container'
+             transitionEnterTimeout={500}
+             transitionLeaveTimeout={300}
+             className='recommended-shows-container'>
+            {results}
+          </ReactCSSTransitionGroup>
           </div>
         <ScrollToTopButton scrollStepInPx="50" delayInMs="16.66"/>
         </div>
