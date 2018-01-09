@@ -10,7 +10,7 @@ import FilmDetail from './FilmDetail';
 import TvDetail from './TvDetail';
 import ScrollToTopButton from './ScrollToTopButton';
 
-import { API_KEY as api_key, BASE_URL } from '../settings';
+import { API_KEY as api_key, BASE_URL, PROJECT_NAME } from '../settings';
 
 
 export default class Detail extends Component {
@@ -20,7 +20,10 @@ export default class Detail extends Component {
     this.state = {
       data: {},
       recommended_shows: {},
-      start: 0, end: 8
+      start: 0, end: 8,
+      show_id: -1,
+      loading: true,
+      scrollToTop: false
     };
   }
 
@@ -28,33 +31,39 @@ export default class Detail extends Component {
     document.body.className = 'bg detail';
     this.getData();
   }
-  componentWillReceiveProps(nextProps) {
-    // will be true
-    const locationChanged = nextProps.location !== this.props.location;
-    if (locationChanged){
-      this.getData();
+
+  componentWillReceiveProps(nextProps){
+    if (nextProps.location !== this.props.location){
+      this.setState({
+        show_id: nextProps.match.params.show_id,
+        scrollToTop: true
+      }, this.getData);
+
     }
   }
 
   getData(){
-    const { match: { params: { movie_id, type } } } = this.props;
-    axios.get(`${BASE_URL}/${type}/${movie_id}`, {
+    const { match: { params: { show_id, type } } } = this.props;
+    axios.get(`${BASE_URL}/${type}/${show_id}`, {
       params: {
         api_key
       }
     }).then(({data}) => {
-      this.setState({data});
+      this.setState({data, show_id, scrollToTop: false});
       this.getRecommendations();
     });
   }
 
   getRecommendations(){
-    const { match: { params: { movie_id, type } } } = this.props;
-    axios.get(`${BASE_URL}/${type}/${movie_id}/recommendations`, {
+    const { match: { params: { show_id, type } } } = this.props;
+    axios.get(`${BASE_URL}/${type}/${show_id}/recommendations`, {
       params: {
         api_key
       }
-    }).then(({data}) => this.setState({recommended_shows: data}));
+    }).then(({data}) => this.setState({
+      recommended_shows: data,
+      loading: false
+    }));
   }
 
   prevShows(){
@@ -67,11 +76,16 @@ export default class Detail extends Component {
     this.setState({start: end, end: end + 8});
   }
 
+  onClickRecommended(show_id){
+    const { match: {params: { type} }, history } = this.props;
+    history.push(`${PROJECT_NAME}/detail/${type}/${show_id}`);
+  }
+
   render(){
     const { match: {params: {type} }, history } = this.props;
-    const { data, recommended_shows, start, end } = this.state;
+    const { data, recommended_shows, start, end, loading } = this.state;
 
-    if(l_isEmpty(data) || l_isEmpty(recommended_shows)){
+    if(l_isEmpty(data) || l_isEmpty(recommended_shows || loading)){
       return(
         <div>
 	  <ReactLoading
@@ -83,7 +97,9 @@ export default class Detail extends Component {
 
     const reduced_results = recommended_shows.results.slice(start, end);
     const results = reduced_results.map(
-      (film) => <Film key={film.id} film={film} history={history} type={type}/>
+      (film) => <Film key={film.id} film={film}
+      history={history} type={type}
+      onClick={() => this.onClickRecommended(film.id)}/>
     );
 
     const title = type === 'movie' ? data.title : data.name;
@@ -123,7 +139,10 @@ export default class Detail extends Component {
             {results}
           </ReactCSSTransitionGroup>
           </div>
-        <ScrollToTopButton scrollStepInPx="50" delayInMs="16.66"/>
+          <ScrollToTopButton
+             scrollStepInPx="50" delayInMs="16.66"
+             programmaticToTop={this.state.scrollToTop}
+             />
         </div>
       </div>
     );

@@ -32,7 +32,7 @@ class App extends Component {
                    component={SelectGenres}/>
             <Route path={`${root_url}results/:type/:time/:genres?`}
                    component={Results}/>
-            <Route exact path={`${root_url}detail/:type/:movie_id`}
+            <Route exact path={`${root_url}detail/:type/:show_id`}
                    component={Detail}/>
             <Route path={`${root_url}about`}
                    component={About} />

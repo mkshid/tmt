@@ -9,6 +9,11 @@ export default class ScrollToTopButton extends Component {
       intervalId: 0
     };
   }
+  componentWillReceiveProps(nextProps){
+    if (nextProps.programmaticToTop === true){
+      this.scrollToTop();
+    }
+  }
   
   scrollStep() {
     if (window.pageYOffset === 0) {
@@ -33,3 +38,8 @@ export default class ScrollToTopButton extends Component {
     );
   }
 } 
+
+
+ScrollToTopButton.defaultProps = {
+  programmaticToTop: false
+};
