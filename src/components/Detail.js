@@ -28,6 +28,13 @@ export default class Detail extends Component {
     document.body.className = 'bg detail';
     this.getData();
   }
+  componentWillReceiveProps(nextProps) {
+    // will be true
+    const locationChanged = nextProps.location !== this.props.location;
+    if (locationChanged){
+      this.getData();
+    }
+  }
 
   getData(){
     const { match: { params: { movie_id, type } } } = this.props;
