@@ -82,6 +82,13 @@
   .back-to-top {
     display: none;
   }
+  .prev-movies {
+    margin-top: 46%;
+  }
+
+  .next-movies {
+    margin-top: 46%;
+  }
 }
 
 .film-container-enter {

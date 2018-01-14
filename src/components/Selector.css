@@ -84,6 +84,10 @@
   .selector-container .third-question {
     height: 100%;
   }
+  .type-select {
+    padding-top: 2%;
+  }
+
 }
 
 /* Medium Devices, Desktops */

@@ -14,9 +14,7 @@ const Film = ({ film, history, type, onClick }) => {
       <div className='info'>
         <div className='vote'>{film.vote_average}/10</div>
         <div className='title'>{title}</div>
-        <div className='more'
-             onClick={onClick}
-          > More... </div>
+        <div className='more' onClick={onClick}> More... </div>
       </div>
       <img src={`https://image.tmdb.org/t/p/w300${film.poster_path}`}
            alt={film.title}

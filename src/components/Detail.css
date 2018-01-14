@@ -49,6 +49,7 @@
 }
 
 .detail-grid .overview {
+  font-family: "Comic Sans MS", cursive, sans-serif !important;
   font-size: 15px;
   margin-top: 15%;
 }
@@ -134,7 +135,7 @@
   .recommended-grid .next-movies {
     grid-row: 2;
     grid-column: 3;
-    margin-top: 40%;
+    margin-top: 45%;
   }
   .recommended-grid .prev-movies {
     grid-row: 2;
