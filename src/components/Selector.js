@@ -12,28 +12,16 @@ class Selector extends Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      value: '',
-      code: '',
-      first_question_cssClasses: ['first-question'],
-      second_question_cssClasses: ['second-question']
-    };
+    this.state = { value: '', code: ''};
   }
+
   componentWillMount(){
     document.body.className = 'bg first';
     this.props.resetState();
   }
 
   handleChange(value) {
-    if (value !== ''){
-      let { second_question_cssClasses } = this.state;
-      if (second_question_cssClasses.length === 1){
-        second_question_cssClasses = second_question_cssClasses.concat(['show']);
-      }
-      this.setState({ value, second_question_cssClasses });
-    } else {
-      this.setState({ value, second_question_cssClasses: ['second-question']});
-    }
+      this.setState({ value });
   }
 
   handleTimeSelection(code){
@@ -62,30 +50,32 @@ class Selector extends Component {
       5: {text: 'More', code: '150'}
     };
 
-    const times = value === '' || value === 'movie'
-            ? movie_times: series_times;
+    const times = value === '' || value === 'movie' ? movie_times: series_times;
+    const type_select_css = 'type-select';
+    const type_select_selected_css = 'type-select selected';
+    const seriesClassName = value === 'series'? type_select_selected_css : type_select_css;
+    const movieClassName = value === 'movie'? type_select_selected_css : type_select_css;
+    const secondquestClassName = value !== ''? 'second-question show': 'second-question';
 
-    const isFirefox = typeof InstallTrigger !== 'undefined';
-    const options_cName = isFirefox? '' : 'select-type-option';
     return(
       <div className='container'>
         <div className='selector-container'>
-          <section className={this.state.first_question_cssClasses.join(' ')}>
-            <h1> Hey, looking for a new
-              <select className='type-select'
-                      value={this.state.value}
-                      onChange={(e) => this.handleChange(e.target.value)}>
-                <option className={options_cName} value='' />
-                <option className={options_cName}
-                        value='movie'>movie</option>
-                <option className={options_cName}
-                        value='series'>series</option>
-              </select>
-              ? </h1>
+          <section className='first-question'>
+            <h3> Hey, what are you looking for ? </h3>
+            <div className='type-container'>
+              <button
+                 className={seriesClassName}
+                 onClick={(e) => this.handleChange('series')}>
+                <p>Series</p>
+              </button>
+              <button className={movieClassName}
+                   onClick={(e) => this.handleChange('movie')}>
+                <p>Movies</p>
+              </button>
+            </div>
           </section>
-
-          <section className={this.state.second_question_cssClasses.join(' ')}>
-            <h3>How many <b> minutes  </b> do you have? </h3>
+          <section className={secondquestClassName}>
+            <h3>How many minutes do you want to spend on it?</h3>
             <TimeSelector
                times={times}
                handleClick={this.handleTimeSelection.bind(this)}

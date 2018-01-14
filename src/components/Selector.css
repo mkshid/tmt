@@ -1,6 +1,6 @@
 .selector-container {
   display: grid;
-  margin-top: 12%;
+  margin-top: 6%;
 }
 
 .selector-container .first-question  h1 {
@@ -17,7 +17,7 @@
 
 
 .selector-container .second-question {
-  margin-top: 4%;
+  margin-top: 12%;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
@@ -31,27 +31,39 @@
   visibility: visible;
 }
 
+.selector-container .first-question h3,
 .selector-container .second-question.show h3 {
   opacity: 0.6;
-  font-style: italic;
   color: #FFFFFF;
+  font-weight: bold;
+}
+.type-container {
+  margin-top: 2%;
+}
+.type-select {
+  display: inline-flex;
+  width: 200px;
+  height: 80px;
+  margin: 10px;
+  background-color: rgba(249,54,97,0.2);
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  border: 0;
 }
 
-.type-select,
-.type-select:active,
-.type-select:focus{
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid lightcoral;
-  outline: none;
-  cursor: pointer;
-  color: lightcoral;
-  -webkit-appearance: none;
-  -webkit-border-radius: 0px;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0 10px;
+.type-select > p {
+  font-size: 18px;
+  font-weight: 800;
+  padding: 35%;
+  text-align: center;
 }
+
+.type-select:hover,
+.type-select.selected {
+  background-color: rgba(249,54,97,0.4);
+}
+
 
 .select-type-option {
   color: lightcoral;
