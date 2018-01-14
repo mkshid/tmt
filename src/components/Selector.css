@@ -50,12 +50,13 @@
   text-align: center;
   cursor: pointer;
   border: 0;
+  padding-top: 6%;
 }
 
 .type-select > p {
   font-size: 18px;
   font-weight: 800;
-  padding: 35%;
+  width: 100%;
   text-align: center;
 }
 

@@ -11,7 +11,6 @@ class Selector extends Component {
 
   constructor(props){
     super(props);
-
     this.state = { value: '', code: ''};
   }
 
@@ -21,7 +20,8 @@ class Selector extends Component {
   }
 
   handleChange(value) {
-      this.setState({ value });
+    this.setState({ value });
+    this.secondQel.scrollIntoView({behavior: 'smooth'});
   }
 
   handleTimeSelection(code){
@@ -74,7 +74,8 @@ class Selector extends Component {
               </button>
             </div>
           </section>
-          <section className={secondquestClassName}>
+          <section className={secondquestClassName} ref={
+                   secondQel => {this.secondQel = secondQel;}}>
             <h3>How many minutes do you want to spend on it?</h3>
             <TimeSelector
                times={times}
