@@ -4,6 +4,9 @@
   grid-gap: 20px 80px;
   align-content: center;
 }
+.detail-grid > .prev-movies {
+  margin-top: 0px;
+}
 
 .detail-grid img {
   grid-row-start: 2;
@@ -19,6 +22,7 @@
   grid-row-start: 3;
   grid-row-end: 3;
 }
+
 .detail-grid .links {
   display: inline-flex;
   margin-top: 5%;
@@ -49,7 +53,7 @@
 }
 
 .detail-grid .overview {
-  font-family: "Comic Sans MS", cursive, sans-serif !important;
+  font-family: "Comic Sans MS", 'Nunito', sans-serif !important;
   font-size: 15px;
   margin-top: 15%;
 }
