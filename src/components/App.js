@@ -27,15 +27,15 @@ class App extends Component {
         <div>
           <NavBar />
           <Switch>
-            <Route exact path={root_url} component={Selector}/>
-            <Route exact path={`${root_url}:type/:time`}
-                   component={SelectGenres}/>
-            <Route path={`${root_url}results/:type/:time/:genres?`}
-                   component={Results}/>
             <Route exact path={`${root_url}detail/:type/:show_id`}
                    component={Detail}/>
+            <Route path={`${root_url}results/:type/:time/:genres?`}
+                   component={Results}/>
+            <Route exact path={`${root_url}:type/:time`}
+                   component={SelectGenres}/>
             <Route path={`${root_url}about`}
                    component={About} />
+            <Route exact path={root_url} component={Selector}/>
             <Redirect to={root_url}/>
           </Switch>
         </div>
