@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { PROJECT_NAME } from '../settings';
 
 const NavBar = (props) => {
@@ -8,15 +8,15 @@ const NavBar = (props) => {
     <Navbar collapseOnSelect className='bg-transparent'>
       <Navbar.Header>
         <Navbar.Brand>
-          <Link to={`${PROJECT_NAME}/`}>TmT (Take my Time)</Link>
+          <NavLink to={`${PROJECT_NAME}/`}>
+            TmT <br/>
+            <small>Take my Time</small>
+          </NavLink>
         </Navbar.Brand>
-        <Navbar.Toggle />
       </Navbar.Header>
-      <Navbar.Collapse>
-        <Navbar.Text pullRight>
-          <NavLink to={`${PROJECT_NAME}/about`}>About</NavLink>
-        </Navbar.Text>
-      </Navbar.Collapse>
+      <Navbar.Text pullRight>
+        <NavLink to={`${PROJECT_NAME}/about`}>About</NavLink>
+      </Navbar.Text>
     </Navbar>
   );
 }
