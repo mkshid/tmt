@@ -169,3 +169,21 @@
     width: 100%;
   }
 }
+.recommended-shows-trans-enter {
+  opacity: 0.01;
+}
+
+.recommended-shows-trans-enter.recommended-shows-trans-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.recommended-shows-trans-leave {
+  display: none;
+  opacity: 1;
+}
+
+.recommended-shows-trans-leave.recommended-shows-trans-leave-active {
+  display: none;
+  opacity: 1;
+}

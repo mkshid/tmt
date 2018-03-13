@@ -132,7 +132,7 @@ export default class Detail extends Component {
             <div className='icon arrow-right' aria-hidden='true'></div>
           </span>
           <ReactCSSTransitionGroup
-             transitionName='recommended-shows-container'
+             transitionName='recommended-shows-trans'
              transitionEnterTimeout={500}
              transitionLeaveTimeout={300}
              className='recommended-shows-container'>
