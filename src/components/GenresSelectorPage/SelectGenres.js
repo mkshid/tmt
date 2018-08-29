@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import 'react-select/dist/react-select.css';
 
 import './SelectGenres.css';
-import { GENRES } from '../consts';
-import { PROJECT_NAME } from '../settings';
+import { GENRES } from '../../consts';
+import { PROJECT_NAME } from '../../settings';
 
 
 export default class SelectGenres extends Component {
