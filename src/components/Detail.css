@@ -127,7 +127,7 @@
     display: grid;
     grid-template-columns: 40px auto 40px;
     grid-template-rows: 30% auto;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 20%;
     grid-gap: 10px;
   }
@@ -150,7 +150,6 @@
   .recommended-shows-container {
     grid-column-start: 2;
     display: inline-flex;
-    overflow: hidden;
   }
 
   .recommended-shows-container div {
