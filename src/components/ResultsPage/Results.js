@@ -5,9 +5,9 @@ import { isEmpty as l_isEmpty} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Results.css';
-import Film from './Film';
-import ScrollToTopButton from './ScrollToTopButton';
-import { fetchShows, nextShows, prevShows } from '../actions';
+import Film from '../Film';
+import ScrollToTopButton from '../ScrollToTopButton';
+import { fetchShows, nextShows, prevShows } from '../../actions';
 
 
 class Results extends Component {

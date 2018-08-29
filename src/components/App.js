@@ -10,7 +10,7 @@ import './App.css';
 import NavBar from './Navbar';
 import Selector from './Homepage/Selector';
 import SelectGenres from './GeneresSelector/SelectGenres';
-import Results from './Results';
+import Results from './ResultsPage/Results';
 import Detail from './Detail';
 import About from './About';
 
