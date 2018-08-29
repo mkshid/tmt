@@ -5,12 +5,12 @@ import {isEmpty as l_isEmpty} from 'lodash';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Detail.css';
-import Film from './Film';
+import Film from '../Film';
 import FilmDetail from './FilmDetail';
 import TvDetail from './TvDetail';
-import ScrollToTopButton from './ScrollToTopButton';
+import ScrollToTopButton from '../ScrollToTopButton';
 
-import { API_KEY as api_key, BASE_URL, PROJECT_NAME } from '../settings';
+import { API_KEY as api_key, BASE_URL, PROJECT_NAME } from '../../settings';
 
 
 export default class Detail extends Component {

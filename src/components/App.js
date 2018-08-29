@@ -8,10 +8,10 @@ import {
 import './App.css';
 
 import NavBar from './Navbar';
-import Selector from './Selector';
-import SelectGenres from './SelectGenres';
-import Results from './Results';
-import Detail from './Detail';
+import Selector from './Homepage/Selector';
+import SelectGenres from './GenresSelectorPage/SelectGenres';
+import Results from './ResultsPage/Results';
+import Detail from './DetailPage/Detail';
 import About from './About';
 
 import { PROJECT_NAME } from '../settings';
