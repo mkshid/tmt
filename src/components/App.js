@@ -9,9 +9,9 @@ import './App.css';
 
 import NavBar from './Navbar';
 import Selector from './Homepage/Selector';
-import SelectGenres from './GeneresSelector/SelectGenres';
+import SelectGenres from './GenresSelectorPage/SelectGenres';
 import Results from './ResultsPage/Results';
-import Detail from './Detail';
+import Detail from './DetailPage/Detail';
 import About from './About';
 
 import { PROJECT_NAME } from '../settings';

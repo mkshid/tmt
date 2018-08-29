@@ -1,5 +1,5 @@
 import React from 'react';
-import imdb_logo from '../images/icons/imdb_logo.svg';
+import imdb_logo from '../../images/icons/imdb_logo.svg';
 
 const FilmDetail = ({film}) => {
 
