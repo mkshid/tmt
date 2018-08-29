@@ -8,7 +8,7 @@ import {
 import './App.css';
 
 import NavBar from './Navbar';
-import Selector from './Selector';
+import Selector from './Homepage/Selector';
 import SelectGenres from './SelectGenres';
 import Results from './Results';
 import Detail from './Detail';

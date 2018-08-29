@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 
 import './Selector.css';
 import TimeSelector from './TimeSelector';
-import { PROJECT_NAME } from '../settings';
-import { resetState } from '../actions';
+import { PROJECT_NAME } from '../../settings';
+import { resetState } from '../../actions';
 
 
 class Selector extends Component {
