@@ -1,3 +1,3 @@
 # TmT - Take my Time
 
-Need a Film/Tv Show for tonight? checkout [TmT](https://github.com/mkshid/tmt)
+Need a Film/Tv Show for tonight? checkout [TmT](http://mkshid.gitlab.io/tmt/)
